@@ -34,7 +34,7 @@ public class Main {
                 Process p = pb.start();
                 p.waitFor(); // Esperar a que el proceso hijo termine
 
-                // Leer la salida del proceso hijo usando try-with-resources.
+                // capturar y procesar la salida de un proceso hijo usando ImputStream
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
                     String line;
                     StringBuilder output = new StringBuilder();

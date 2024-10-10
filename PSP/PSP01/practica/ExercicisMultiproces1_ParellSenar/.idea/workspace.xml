@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acb1dc30-486e-43e9-b020-2a4a14a2e30e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ExercicisMultiproces1_ParellSenar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExercicisMultiproces1/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ExercicisMultiproces1/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,7 @@
       <workItem from="1728505327908" duration="4000" />
       <workItem from="1728506782432" duration="6000" />
       <workItem from="1728507282446" duration="6447000" />
-      <workItem from="1728577352312" duration="4846000" />
+      <workItem from="1728577352312" duration="5061000" />
     </task>
     <servers />
   </component>
