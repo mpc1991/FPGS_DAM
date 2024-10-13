@@ -11,7 +11,6 @@ public class ExercicisMultiproces1_ParellSenar {
     public static void main(String[] args) {
 
         try {
-            //double numero = in.nextDouble();
             int numero = Integer.parseInt(args[0]);
 
             //int numero = 2;

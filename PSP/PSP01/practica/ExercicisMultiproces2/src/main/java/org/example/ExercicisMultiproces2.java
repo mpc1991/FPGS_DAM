@@ -37,7 +37,5 @@ public class ExercicisMultiproces2 {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }
