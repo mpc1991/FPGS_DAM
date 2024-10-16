@@ -6,17 +6,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // Recursos utilitzats
-// https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+// https://docs.oracle.com/
 
-public class Main {
+public class Programa {
     static Scanner sc = new Scanner(System.in);
-    static StringBuilder htmlContent = new StringBuilder();
+    static StringBuilder htmlContent = new StringBuilder(); // Variable global que gordarà la pàgina html
 
     public static void main(String[] args) {
 
         while (true) {
             System.out.println("");
-            System.out.println("Indica la pàgina web a modificar (exit para salir): ");
+            System.out.println("Indica la pàgina web a modificar (exit per sortir): ");
             System.out.println("Exemple: https://paucasesnovescifp.cat");
             String pagina = sc.nextLine().toLowerCase();
 
@@ -27,13 +27,14 @@ public class Main {
             boolean b = m.matches();
 
             if (pagina.equals("exit")){
-                System.out.println("Saliendo del programa...");
+                System.out.println("Sortint del programa...");
                 break;
             } else if (!b) {
-                System.out.println("Debes introducir una URL correcta");
+                System.out.println("Tens que introducir una URL correcta");
             } else {
                 int seleccio = 0;
                 while (seleccio != 8) {
+                    System.out.println("");
                     System.out.println("Selecciona el que vols fer;");
                     System.out.println("");
                     System.out.println("1. Carregar pàgina Web");
@@ -49,31 +50,31 @@ public class Main {
 
                     switch (seleccio) {
                         case 1:
-                            carregarPaginaWeb(pagina); // Cargar el HTML y guardarlo en la variable global
+                            carregarPaginaWeb(pagina); // Carregar el HTML y guardar-lo en la variable global
                             break;
                         case 2:
-                            comptarCaracters(); // Función para contar carácteres
+                            comptarCaracters(); // Funció per a comptar caràcters
                             break;
                         case 3:
-                            canviaCaracters();
+                            canviaCaracters(); // Función per a cambiar caràcteres
                             break;
                         case 4:
-                            llegirEncrypted();
+                            llegirEncrypted(); // Funció per a llegir l'arxiu "Encrypted"
                             break;
                         case 5:
-                            buscarParaula();
+                            buscarParaula(); // Funció per validar si una paràula existéix
                             break;
                         case 6:
-                            crearIndex();
+                            crearIndex(); // Funció per a crear l'Index
                             break;
                         case 7:
-                            obrirIndex();
+                            obrirIndex(); // Funció per a obrir l'Index emprant el navegador
                             break;
                         case 8:
-                            System.out.println("Saliendo del menú");
+                            System.out.println("Sortint del menú");
                             break;
                         default:
-                            System.out.println("El número debe ser entre el 1 y el 8.");
+                            System.out.println("El número té que ser entre el 1 i el 8.");
                     }
                 }
             }
@@ -83,12 +84,11 @@ public class Main {
     public static void carregarPaginaWeb(String pagina) {
         try {
 
-            // Creamos el proceso hijo
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/carregarPaginaWeb.java");
+            // Cream el proces fill
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.carregarPaginaWeb");
             Process p = pb.start();
 
-
-            // Enviamos los datos al proceso hijo
+            // Enviam les dades al proces fill
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
                 writer.write(pagina);
                 writer.newLine();
@@ -97,7 +97,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-            // Leemos la salida del proceso hijo
+            // Llegim la sortida del fill
             try(BufferedReader br =new BufferedReader(new InputStreamReader(p.getInputStream()))) {
                 String line;
                 StringBuilder content = new StringBuilder();
@@ -106,7 +106,7 @@ public class Main {
                     content.append(line).append("\n");
                 }
 
-                // Almacenamos el contenido HTML en la variable global
+                // Almacenam el contingut dins la variable global.
                 htmlContent = content;
                 System.out.println("Salida proceso hijo:");
                 System.out.println(htmlContent);
@@ -122,25 +122,25 @@ public class Main {
     public static void comptarCaracters () {
 
         if (htmlContent.isEmpty()) {
-            System.out.println("Primero debes cargar una página web (opción 1).");
+            System.out.println("Primer tens que carregar una página web (opción 1).");
             return;
         }
 
-        System.out.println("Introduce el caracter a contar");
+        System.out.println("Introdueix el caràcter a comptar");
         String caracter = sc.nextLine();
 
         if (caracter.length() == 0){
-            System.out.println("Error: Debes introducir al menos 1 caracter");
+            System.out.println("Error: Tens que introduir almenys 1 caràcter");
             return;
-        }        if (caracter.length() != 1) {
-            System.out.println("Error: Debes introducir sólo 1 caracter");
+        } else if (caracter.length() != 1) {
+            System.out.println("Error: Tens que introduir només 1 carácter");
             return;
         }
 
         try {
 
             // Creamos proceso hijo para contar caracteres
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/comptarCaracters.java");
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.comptarCaracters");
             Process p = pb.start();
 
             // Enviamos los datos al proceso hijo
@@ -169,7 +169,7 @@ public class Main {
 
             p.waitFor();
 
-            System.out.println("Salida proceso hijo:");
+            System.out.println("Sortida del proces fill:");
             System.out.println(content);
 
         } catch (Exception e) {
@@ -186,7 +186,6 @@ public class Main {
 
             if (caracterQuitar.length() != 1) {
                 System.out.println("Debes introducir una letra a sustituir");
-                caracterQuitar = sc.nextLine();
                 return;
             }
         }
@@ -198,14 +197,13 @@ public class Main {
 
             if (caracterPoner.length() != 1) {
                 System.out.println("Debes indicar un caracter al que cambiar");
-                caracterPoner = sc.nextLine();
                 return;
             }
         }
 
         try {
-            // Creamos el proceso hijo
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/canviaCaracters.java");
+            // Cream el proces fill
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.canviaCaracters");
             Process p = pb.start();
 
             // Enviamos los datos al proceso hijo
@@ -233,8 +231,6 @@ public class Main {
 
             p.waitFor();
 
-            // Asignamos nuevo resultado de la página web e imprimimos resultado
-            //htmlContent = content;
             System.out.println("Salida proceso hijo:");
             System.out.println(content);
 
@@ -243,10 +239,11 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+
     public static void llegirEncrypted () {
         try {
             // Creamos el proceso hijo
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/llegirEncrypted.java");
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.llegirEncrypted");
             Process p = pb.start();
 
             // Leemos la salida del proceso hijo (el contenido del archivo encrypted.txt)
@@ -281,7 +278,7 @@ public class Main {
 
         try {
             // Creamos el proceso hijo
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/buscarParaula.java");
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.buscarParaula");
             Process p = pb.start();
 
             // Enviamos los datos al proceso hijo
@@ -321,13 +318,16 @@ public class Main {
     public static void crearIndex() {
         // Comprobar si el archivo encrypted.txt existe
         File encryptedFile = new File("encrypted.txt");
+        String respuesta = "";
 
         if (!encryptedFile.exists()) {
             System.out.println("El archivo encrypted.txt no existe.");
             System.out.println("¿Deseas realizar la opción 3 (sustituir caracteres) para crear encrypted.txt? (sí/no)");
-            String respuesta = sc.nextLine().toLowerCase();
+            System.out.println("1. Si");
+            System.out.println("2. No");
+            respuesta = sc.nextLine();
 
-            if (respuesta.equals("sí")) {
+            if (respuesta.equals("1")) {
                 canviaCaracters(); // Ejecutar la opción 3 para crear encrypted.txt
             } else {
                 System.out.println("Operación cancelada.");
@@ -337,8 +337,16 @@ public class Main {
 
         try {
             // Crear proceso hijo para generar index.html
-            ProcessBuilder pb = new ProcessBuilder("java", "../psp_u2_PorcelCifreMacia_recursos/src/main/java/org/example/crearIndex.java");
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.crearIndex");
             Process p = pb.start();
+
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
+                writer.write(encryptedFile.getAbsolutePath());
+                writer.newLine();
+                writer.flush();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             // Leer la salida del proceso hijo
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -357,6 +365,7 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+
     public static void obrirIndex() {
         // Comprobar si el archivo index.html existe
         File indexFile = new File("index.html");
