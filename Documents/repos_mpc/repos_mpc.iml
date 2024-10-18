@@ -7,5 +7,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/FPGS_DAM/PSP/PSP01/trabajo" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/FPGS_DAM/PSP/PSP01/trabajo/psp_u2_PorcelCifreMacia/src/main/java" />
+          <root url="file://$MODULE_DIR$/FPGS_DAM/PSP/PSP01/trabajo/psp_u2_PorcelCifreMacia_recursos/src/main/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
