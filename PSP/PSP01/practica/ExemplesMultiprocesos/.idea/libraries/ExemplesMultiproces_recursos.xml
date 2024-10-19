@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ExemplesMultiproces_recursos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ExemplesMultiproces_recursos/dist/ExemplesMultiproces_recursos.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

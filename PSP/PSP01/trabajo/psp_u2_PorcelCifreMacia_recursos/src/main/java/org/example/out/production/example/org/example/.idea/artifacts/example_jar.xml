@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="example:jar">
+    <output-path>$PROJECT_DIR$/../../../../../../psp_u2_PorcelCifreMacia</output-path>
+    <root id="root">
+      <element id="archive" name="example.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../psp_u2_PorcelCifreMacia/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="example" />
+      </element>
+    </root>
+  </artifact>
+</component>
