@@ -3,9 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar</output-path>
     <root id="root">
       <element id="archive" name="psp_u2_PorcelCifreMacia_recursos.jar">
+<<<<<<< HEAD
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
         </element>
+=======
+>>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
         <element id="module-output" name="psp_u2_PorcelCifreMacia_recursos" />
       </element>
     </root>
