@@ -9,7 +9,15 @@ public class crearIndex {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 
             // Leer el contenido de encrypted.txt
+<<<<<<< HEAD
             String fileName = br.readLine();
+=======
+<<<<<<< HEAD
+            String fileName = br.readLine();
+=======
+            String fileName = "encrypted.txt";
+>>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
+>>>>>>> 9aedccb47fd820b3583660e1602416d973b5d6aa
             File encryptedFile = new File(fileName);
             if (!encryptedFile.exists()) {
                 System.out.println("Error: El archivo encrypted.txt no existe.");
@@ -37,7 +45,14 @@ public class crearIndex {
                 bodyContent = matcher.group(1).trim(); // Extraemos solo el contenido dentro de <body>
             } else {
                 System.out.println("Error: No se encontró contenido dentro de las etiquetas <body></body>.");
+<<<<<<< HEAD
                 System.out.println("Asegurate de cargar la página web primero (Opción 1)");
+=======
+<<<<<<< HEAD
+                System.out.println("Asegurate de cargar la página web primero (Opción 1)");
+=======
+>>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
+>>>>>>> 9aedccb47fd820b3583660e1602416d973b5d6aa
                 return;
             }
 

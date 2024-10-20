@@ -6,6 +6,13 @@ import java.io.InputStreamReader;
 public class buscarParaula {
     public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
+>>>>>>> 9aedccb47fd820b3583660e1602416d973b5d6aa
             // Leemos la palabra a buscar
             String paraula = br.readLine();
 
