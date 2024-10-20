@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ExemplesMultiproces/ExemplesMultiproces.iml" filepath="$PROJECT_DIR$/ExemplesMultiproces/ExemplesMultiproces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExemplesMultiproces_recursos/ExemplesMultiproces_recursos.iml" filepath="$PROJECT_DIR$/ExemplesMultiproces_recursos/ExemplesMultiproces_recursos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ExemplesMultiprocesos.iml" filepath="$PROJECT_DIR$/.idea/ExemplesMultiprocesos.iml" />
+    </modules>
+  </component>
+</project>
