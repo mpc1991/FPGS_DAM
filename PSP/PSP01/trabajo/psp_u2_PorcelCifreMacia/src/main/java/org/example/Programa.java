@@ -1,11 +1,8 @@
 package org.example;
 
 import java.io.*;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,10 +13,7 @@ import java.util.regex.Pattern;
 public class Programa {
     static Scanner sc = new Scanner(System.in);
     static StringBuilder htmlContent = new StringBuilder(); // Variable global que gordarà la pàgina html
-<<<<<<< HEAD
     static List<Process> procesosHijos = new ArrayList<>();  // Lista para guardar los procesos hijos
-=======
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
     public static void main(String[] args) {
 
@@ -27,11 +21,7 @@ public class Programa {
             System.out.println("");
             System.out.println("Indica la pàgina web a modificar (exit per sortir): ");
             System.out.println("Exemple: https://paucasesnovescifp.cat");
-<<<<<<< HEAD
             String pagina = sc.nextLine().toLowerCase().trim();
-=======
-            String pagina = sc.nextLine().toLowerCase();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Validamos (Que empieze por http:// o https://) (que contenga letras, puntos y guiones) (que siga de "." y letras tantas veces como sea necesario)
             String validacio = "https?://[\\w.-]+(\\.[a-z]{2,})+";
@@ -46,7 +36,6 @@ public class Programa {
                 System.out.println("Tens que introducir una URL correcta");
             } else {
                 int seleccio = 0;
-<<<<<<< HEAD
 
                 while (seleccio != 8) {
                     try {
@@ -94,50 +83,6 @@ public class Programa {
                         }
                     }catch (Exception e) {
                         System.out.println("Debes introducir un número para elegir la opción del menú");
-=======
-                while (seleccio != 8) {
-                    System.out.println("");
-                    System.out.println("Selecciona el que vols fer;");
-                    System.out.println("");
-                    System.out.println("1. Carregar pàgina Web");
-                    System.out.println("2. Analitzar el nombre de caràcters");
-                    System.out.println("3. Substituir lletra");
-                    System.out.println("4. Llegir encrypted.txt");
-                    System.out.println("5. Cercar paraules clau");
-                    System.out.println("6. Crear arxiu index.html");
-                    System.out.println("7. Ejecutar arxiu index.html");
-                    System.out.println("8. Sortir");
-                    seleccio = sc.nextInt();
-                    sc.nextLine();
-
-                    switch (seleccio) {
-                        case 1:
-                            carregarPaginaWeb(pagina); // Carregar el HTML y guardar-lo en la variable global
-                            break;
-                        case 2:
-                            comptarCaracters(); // Funció per a comptar caràcters
-                            break;
-                        case 3:
-                            canviaCaracters(); // Función per a cambiar caràcteres
-                            break;
-                        case 4:
-                            llegirEncrypted(); // Funció per a llegir l'arxiu "Encrypted"
-                            break;
-                        case 5:
-                            buscarParaula(); // Funció per validar si una paràula existéix
-                            break;
-                        case 6:
-                            crearIndex(); // Funció per a crear l'Index
-                            break;
-                        case 7:
-                            obrirIndex(); // Funció per a obrir l'Index emprant el navegador
-                            break;
-                        case 8:
-                            System.out.println("Sortint del menú");
-                            break;
-                        default:
-                            System.out.println("El número té que ser entre el 1 i el 8.");
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
                     }
                 }
             }
@@ -148,14 +93,9 @@ public class Programa {
         try {
 
             // Cream el proces fill
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.carregarPaginaWeb");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.carregarPaginaWeb");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Enviam les dades al proces fill
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
@@ -209,14 +149,9 @@ public class Programa {
         try {
 
             // Creamos proceso hijo para contar caracteres
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.comptarCaracters");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.comptarCaracters");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Enviamos los datos al proceso hijo
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
@@ -242,11 +177,6 @@ public class Programa {
                 content.append(line).append("\n");
             }
 
-<<<<<<< HEAD
-=======
-            p.waitFor();
-
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
             System.out.println("Sortida del proces fill:");
             System.out.println(content);
 
@@ -281,14 +211,9 @@ public class Programa {
 
         try {
             // Cream el proces fill
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.canviaCaracters");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.canviaCaracters");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Enviamos los datos al proceso hijo
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
@@ -313,11 +238,6 @@ public class Programa {
                 content.append(line).append("\n");
             }
 
-<<<<<<< HEAD
-=======
-            p.waitFor();
-
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
             System.out.println("Salida proceso hijo:");
             System.out.println(content);
 
@@ -330,14 +250,9 @@ public class Programa {
     public static void llegirEncrypted () {
         try {
             // Creamos el proceso hijo
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.llegirEncrypted");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.llegirEncrypted");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Leemos la salida del proceso hijo (el contenido del archivo encrypted.txt)
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -348,12 +263,6 @@ public class Programa {
                 fileContent.append(line).append("\n");
             }
 
-<<<<<<< HEAD
-=======
-            // Esperamos a que el proceso hijo termine
-            p.waitFor();
-
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
             // Mostramos el contenido del archivo por consola
             System.out.println("Contingut de l'arxiu encrypted.txt:");
             System.out.println(fileContent.toString());
@@ -374,14 +283,9 @@ public class Programa {
 
         try {
             // Creamos el proceso hijo
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.buscarParaula");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.buscarParaula");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             // Enviamos los datos al proceso hijo
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
@@ -439,14 +343,9 @@ public class Programa {
 
         try {
             // Crear proceso hijo para generar index.html
-<<<<<<< HEAD
             ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.crearIndex");
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "java", "-cp", "../psp_u2_PorcelCifreMacia_recursos/out/artifacts/psp_u2_PorcelCifreMacia_recursos_jar/psp_u2_PorcelCifreMacia_recursos.jar", "org.example.crearIndex");
-            Process p = pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 
             try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()))) {
                 writer.write(encryptedFile.getAbsolutePath());
@@ -503,19 +402,14 @@ public class Programa {
             }
 
             // Iniciar el proceso
-<<<<<<< HEAD
             Process p = pb.start();
             procesosHijos.add(p); // Añadimos el proceso hijo a la lista
-=======
-            pb.start();
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
             System.out.println("El archivo index.html se ha abierto en el navegador.");
 
         } catch (Exception e) {
             System.out.println("Error al abrir el archivo index.html: " + e.getMessage());
         }
     }
-<<<<<<< HEAD
 
     public static void verificarProcesosActivos() {
         boolean hayProcesosActivos = false;
@@ -537,6 +431,4 @@ public class Programa {
         }
     }
 
-=======
->>>>>>> cbde9fb97379d0d5f8bc01b3ba528fe55b09f656
 }
