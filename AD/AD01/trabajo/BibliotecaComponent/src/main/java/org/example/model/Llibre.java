@@ -3,34 +3,33 @@ package org.example.model;
 import org.example.ExcepcioBiblioteca;
 
 public class Llibre {
-    String tituloLibro;
-    int anoLibro;
-    String autorLibro;
+    private String titulo;
+    private int ano;
+    private String autor;
 
-    public Llibre (String tituloLibro, int anoLibro, String autorLibro) throws ExcepcioBiblioteca {
-        if (tituloLibro == null || tituloLibro.trim().isEmpty()) {throw new ExcepcioBiblioteca("El título del libro no puede estar vacío.");}
+    // Constructor de la clase Llibre
+    public Llibre (String titulo, int ano, String autor) throws ExcepcioBiblioteca {
 
-        this.tituloLibro = tituloLibro;
-        this.anoLibro = anoLibro;
-        this.autorLibro = autorLibro;
+        // Validar: El título no puede estar vacío o ser null
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new ExcepcioBiblioteca("El título del libro no puede estar vacío.");
+        }
+
+        this.titulo = titulo;
+        this.ano = ano;
+        this.autor = autor;
     }
 
-    public String getTituloLibro() {
-        return tituloLibro;
+    public String getTitulo() {
+        return titulo;
     }
-    public void setTituloLibro(String tituloLibro) {
-        this.tituloLibro = tituloLibro;
+
+    public int getAno() {
+        return ano;
     }
-    public int getAnoLibro() {
-        return anoLibro;
+
+    public String getAutor() {
+        return autor;
     }
-    public void setAnoLibro(int anoLibro) {
-        this.anoLibro = anoLibro;
-    }
-    public String getAutorLibro() {
-        return autorLibro;
-    }
-    public void setAutorLibro(String autorLibro) {
-        this.autorLibro = autorLibro;
-    }
+
 }
