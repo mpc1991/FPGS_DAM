@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BibliotecaVista:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BibliotecaVista_jar</output-path>
+    <root id="archive" name="BibliotecaVista.jar">
+      <element id="module-output" name="BibliotecaVista" />
+    </root>
+  </artifact>
+</component>

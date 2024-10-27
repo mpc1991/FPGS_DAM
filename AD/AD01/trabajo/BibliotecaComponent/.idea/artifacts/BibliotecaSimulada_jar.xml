@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BibliotecaSimulada:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BibliotecaSimulada_jar</output-path>
+    <root id="archive" name="BibliotecaSimulada.jar">
+      <element id="module-output" name="BibliotecaSimulada" />
+    </root>
+  </artifact>
+</component>
