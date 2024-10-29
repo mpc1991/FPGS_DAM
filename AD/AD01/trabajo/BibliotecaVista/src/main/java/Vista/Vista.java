@@ -3,7 +3,6 @@ package Vista;
 import org.example.controlador.ControladorBiblioteca;
 import org.example.model.Llibre;
 import org.example.model.Autor;
-import org.example.ExcepcioBiblioteca;
 
 import java.util.List;
 
@@ -29,8 +28,7 @@ public class Vista {
         List<Llibre> libros = controlador.getListaLlibres();
         System.out.println("Lista de Libros:");
         for (Llibre llibre : libros) {
-            String autor = (llibre.getAutor() != null) ? llibre.getAutor() : "Sin autor";
-            System.out.println("- Título: " + llibre.getTitulo() + ", Año: " + llibre.getAno() + ", Autor: " + autor);
+            System.out.println("- Título: " + llibre.getTitulo() + ", Año: " + llibre.getAno() + ", Autor/es: " + llibre.getAutores());
         }
     }
 

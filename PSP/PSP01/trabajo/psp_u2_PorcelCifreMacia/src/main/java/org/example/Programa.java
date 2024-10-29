@@ -417,12 +417,8 @@ public class Programa {
         for (Process proceso : procesosHijos) {
             if (proceso.isAlive()) {
                 hayProcesosActivos = true;
-                try {
-                    System.out.println("Esperant que el procés fill acabi...");
-                    proceso.waitFor();  // Espera a que el proceso hijo termine
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                System.out.println("Esperant que el procés fill acabi...");
+                proceso.destroy();  // Espera a que el proceso hijo termine
             }
         }
 

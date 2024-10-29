@@ -25,4 +25,9 @@ public class Autor {
     public String getApellido() {
         return apellido;
     }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
 }

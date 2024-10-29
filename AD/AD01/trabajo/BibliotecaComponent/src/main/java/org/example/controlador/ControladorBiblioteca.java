@@ -1,5 +1,7 @@
 package org.example.controlador;
 
+// Código adaptado de Nerea Montoya
+
 import org.example.model.Autor;
 import org.example.model.Llibre;
 import org.example.ExcepcioBiblioteca;
@@ -17,7 +19,7 @@ public class ControladorBiblioteca {
 
     private void inicializarDatos() throws ExcepcioBiblioteca{
         // Creamos Autores
-        Autor autor1 = new Autor("Gabriel", "García Márquez");
+        Autor autor1 = new Autor("Nerea", "Montoya");
         Autor autor2 = new Autor("José", "Verdejo");
         Autor autor3 = new Autor("Aitor", "Velasco");
 
@@ -27,11 +29,11 @@ public class ControladorBiblioteca {
         listaAutores.add(autor3);
 
         // Creamos y agregamos Libros
-        listaLibros.add(new Llibre("Cien años de soledad", 1967, autor1.getNombre() + " " + autor1.getApellido()));
-        listaLibros.add(new Llibre("Crónica de una muerte anunciada", 1981, autor1.getNombre() + " " + autor1.getApellido()));
-        listaLibros.add(new Llibre("La sombra del viento", 2001, autor2.getNombre() + " " + autor2.getApellido()));
-        listaLibros.add(new Llibre("El señor de los anillos", 1954, null)); // Libro sin autor
-        listaLibros.add(new Llibre("Libro conjunto", 2020, autor1.getNombre() + " " + autor1.getApellido() + " & " + autor2.getNombre() + " " + autor2.getApellido())); // Libro con múltiples autores
+        listaLibros.add(new Llibre("Solo Leveling", 2023, List.of(autor1)));
+        listaLibros.add(new Llibre("Fairy Tail", 2006, List.of(autor2)));
+        listaLibros.add(new Llibre("Bleach", 2024, List.of(autor2)));
+        listaLibros.add(new Llibre("El señor de los anillos", 2000, null)); // Libro sin autor
+        listaLibros.add(new Llibre("Libro conjunto", 2020, List.of(autor1, autor2))); // Libro con múltiples autores
     }
 
     // Métodos para obtener listas
@@ -57,7 +59,7 @@ public class ControladorBiblioteca {
         List<Llibre> librosDeAutor = new ArrayList<>();
         String nombreCompleto = autor.getNombre() + " " + autor.getApellido();
         for (Llibre llibre : listaLibros) {
-            if (nombreCompleto.equals(llibre.getAutor())) {
+            if (nombreCompleto.equals(llibre.getAutores())) {
                 librosDeAutor.add(llibre);
             }
         }
