@@ -10,9 +10,14 @@ isPalindrom (String frase) {
 
   String reverse = fraseFormateada.split("").reversed.join("");
 
-  if (fraseFormateada == reverse) {
+  /*if (fraseFormateada == reverse) {
     print("La cadena de texto es palídromo");
   } else {
     print("La cadena de texto no es palídromo");
-  }
+  }*/
+
+  // formato dart
+  fraseFormateada == reverse
+    ? print("La cadena de texto es palídromo")
+    : print("La cadena de texto no es palídromo");
 }

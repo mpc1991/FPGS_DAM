@@ -1,7 +1,7 @@
 // Genera nombres aleatoris entre 1 i 1000 i comproba si es primari o no
 
 import "dart:math";
-main(){
+void main(){
   var a = getRandom();
 
   if (isPrime(a)){
