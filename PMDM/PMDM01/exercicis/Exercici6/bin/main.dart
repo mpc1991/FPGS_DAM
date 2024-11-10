@@ -2,13 +2,13 @@
 
 import "dart:math";
 main(){
-var a = getRandom();
+  var a = getRandom();
 
-if (isPrime(a)){
-  print("El número és primo");
-} else {
-  print("El número no és primo");
-}
+  if (isPrime(a)){
+    print("El número és primo");
+  } else {
+    print("El número no és primo");
+  }
 }
 
 getRandom () {
