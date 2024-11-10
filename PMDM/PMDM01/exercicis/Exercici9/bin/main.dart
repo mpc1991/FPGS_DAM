@@ -1,7 +1,8 @@
 // Dado un número, pintará una cuadricula de esa grandaria
 
+// adaptado de chatGPT
 void main() {
-  int tamano = 3; // Tamaño de la cuadrícula (número de celdas por fila y columna)
+  int tamano = 10; // Tamaño de la cuadrícula (número de celdas por fila y columna)
   pintarCuadricula(tamano);
 }
 
@@ -13,9 +14,9 @@ void pintarCuadricula(int tamano) {
     
     // Imprimir las celdas verticales
     for (int j = 0; j < tamano; j++) {
-      //stdout.write('|   '); // Usamos stdout.write para evitar el salto de línea
+      print('|   ' * (tamano + 1)); // Usamos stdout.write para evitar el salto de línea
     }
-    print('|'); // Imprimir la última barra vertical y saltar a la siguiente línea
+    //print('|'); // Imprimir la última barra vertical y saltar a la siguiente línea
   }
   // Imprimir la última línea horizontal después del ciclo
   print(' ---' * tamano);
