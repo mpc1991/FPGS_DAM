@@ -1,7 +1,6 @@
 import 'Vehicle.dart';
 
 class Cotxe extends Vehicle {
-
   // Constructor Matricula + valors predeterminats
   Cotxe.nomesMatricula({
     required String matricula,
@@ -11,33 +10,31 @@ class Cotxe extends Vehicle {
     String dni = "",
     double quilometratge = 0.0,
   }) : super.nomesMatricula(
-    matricula: matricula,
-    marca: marca,
-    model: model,
-    isLlogat: isLlogat,
-    dni: dni,
-    quilometratge: quilometratge
-    );
-  
+            matricula: matricula,
+            marca: marca,
+            model: model,
+            isLlogat: isLlogat,
+            dni: dni,
+            quilometratge: quilometratge);
+
   // Constructor complet
   Cotxe.complet({
-    required String matricula, 
-    required String marca, 
-    required String model, 
-    required bool isLlogat, 
-    required String dni, 
+    required String matricula,
+    required String marca,
+    required String model,
+    required bool isLlogat,
+    required String dni,
     required double quilometratge,
-    }) : super.complet(
-    matricula: matricula,
-    marca: marca,
-    model: model,
-    isLlogat: isLlogat,
-    dni: dni,
-    quilometratge: quilometratge
-    );
-  
+  }) : super.complet(
+            matricula: matricula,
+            marca: marca,
+            model: model,
+            isLlogat: isLlogat,
+            dni: dni,
+            quilometratge: quilometratge);
+
   @override
-  String toString(){
-    return "$dni";
+  String toString() {
+    return "DNI: $dni, Marca: $marca, Modelo: $model, Matricula: $matricula, Quilometratge: $quilometratge";
   }
 }
