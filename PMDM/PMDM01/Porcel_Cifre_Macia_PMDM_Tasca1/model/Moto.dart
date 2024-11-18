@@ -46,6 +46,6 @@ class Moto extends Vehicle {
   set cilindrada(cilindrada) => _cilindrada = cilindrada;
 
   String toString() {
-    return "DNI: $dni, Marca: $marca, Modelo: $model, Matricula: $matricula, Quilometratge: $quilometratge, Cilindrada: $_cilindrada";
+    return "Matrícula: $matricula, Marca: $marca, Modelo: $model, Llogat: $isLlogat, DNI: $dni, Quilometratge: $quilometratge, Cilindrada: $_cilindrada";
   }
 }

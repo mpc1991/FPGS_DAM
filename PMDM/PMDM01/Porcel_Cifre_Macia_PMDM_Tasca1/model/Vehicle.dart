@@ -69,20 +69,32 @@ abstract class Vehicle {
     return "Matrícula: $_matricula, Marca: $_marca, Modelo: $_model, Llogat: $_isLlogat, DNI: $_dni, Quilometratge: $_quilometratge";
   }
 
-  void llogar(){
+  void llogar(String dni) {
     _isLlogat = true;
+    _dni = dni;
   }
-  void retornar(){
+
+  void retornar() {
     _isLlogat = false;
+    _dni = "";
   }
+
   estaLlogat() {
     return _isLlogat;
   }
 
+
   @override
-  compareTo(Vehicle a, Vehicle b) {
-    if (a is Cotxe && b is Cotxe) { return a.quilometratge.compareTo(b.quilometratge);
-    } else if (a is Moto && b is Moto) {return a.quilometratge.compareTo(b.quilometratge);
-    } else { return -1;}
+  int compareTo(Object a) {
+    if (a is Vehicle) {
+      if (this.runtimeType == a.runtimeType) {
+        return this.quilometratge!.compareTo(a.quilometratge!);
+      } else {
+        throw ArgumentError(
+            'No se pueden comparar vehículos de diferentes tipos');
+      }
+    } else {
+      throw ArgumentError('El argumento debe ser un objeto de tipo Vehicle');
+    }
   }
 }

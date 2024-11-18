@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ef04fa60-9751-416b-a184-032a75d0fef3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/bin/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/bin/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Cotxe.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Cotxe.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Moto.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Moto.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Vehicle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PMDM/PMDM01/Porcel_Cifre_Macia_PMDM_Tasca1/model/Vehicle.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "mpc1991"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mpc1991/FPGS_DAM.git",
+    "accountId": "ae959012-38d5-4b64-b121-aeeb3d545090"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2oy6eakaMVV4SljULcm8bmxxDmm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/seek_/Documents/repos_mpc/FPGS_DAM/AD/AD02/Ejercicios",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef04fa60-9751-416b-a184-032a75d0fef3" name="Changes" comment="" />
+      <created>1731829565015</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731829565015</updated>
+      <workItem from="1731829566061" duration="701000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

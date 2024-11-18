@@ -35,6 +35,6 @@ class Cotxe extends Vehicle {
 
   @override
   String toString() {
-    return "DNI: $dni, Marca: $marca, Modelo: $model, Matricula: $matricula, Quilometratge: $quilometratge";
+    return "Matrícula: $matricula, Marca: $marca, Modelo: $model, Llogat: $isLlogat, DNI: $dni, Quilometratge: $quilometratge";
   }
 }

@@ -1,16 +1,22 @@
 class Client {
   late String _dni;
   late String _nom;
-  String? _llinatges; 
+  String? _llinatges;
   String? _nomComplet;
   String? _correu;
   int? _telefon;
   int? _targetaCredit;
-  
+
   // Todos son named
   // DNI y nom son obligatorios
   // El resto son opcionales
-  client ({required dni, required String nom, String? llinatges, String? correu, int? telefon, int? targetaCredit}){
+  Client(
+      {required dni,
+      required String nom,
+      String? llinatges,
+      String? correu,
+      int? telefon,
+      int? targetaCredit}) {
     _dni = dni;
     _nom = nom;
     _llinatges = llinatges;
@@ -34,8 +40,8 @@ class Client {
   set telefon(telefon) => _telefon = telefon;
   get targetaCredit => _targetaCredit;
   set targetaCredit(targetaCredit) => _targetaCredit = targetaCredit;
-  
-  toString(){
+
+  toString() {
     return "Nom: $_nom";
   }
 }
