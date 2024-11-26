@@ -45,7 +45,10 @@ public class ProvesStreams {
     public static void provesCharacter() throws FileNotFoundException {
         String desti = "../desti.txt";
         String origen = "../Himne dels pirates UTF-8.txt";
+        String dades = "Hola que tal?";
 
         EinesCharacterStream.mostraCharacters(origen);
+        EinesCharacterStream.escriuCharacters(desti, dades);
+        EinesCharacterStream.copiaCharacters(origen, desti);
     }
 }
