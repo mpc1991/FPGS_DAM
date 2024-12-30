@@ -1,0 +1,35 @@
+{
+    "nomApp": "Components",
+    "rutes": [
+        {
+            "ruta": "alert",
+            "icona": "add_alert",
+            "texte": "Alertes"
+        },
+        {
+            "ruta": "avatar",
+            "icona": "accessibility",
+            "texte": "Avatars"
+        },
+        {
+            "ruta": "card",
+            "icona": "folder_open",
+            "texte": "Cards - Targetes"
+        },
+        {
+            "ruta": "animatedContainer",
+            "icona": "donut_large",
+            "texte": "Animated Container"
+        },
+        {
+            "ruta": "inputs",
+            "icona": "input",
+            "texte": "Inputs"
+        },
+        {
+            "ruta": "slider",
+            "icona": "tune",
+            "texte": "Slider - Checks"
+        }
+    ]
+}
