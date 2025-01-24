@@ -1,0 +1,15 @@
+{
+    "nomApp": "SPPMMD",
+    "rutes": [
+        {
+            "ruta": "personal",
+            "icona": "personal",
+            "texte": "personal"
+        },
+        {
+            "ruta": "widget",
+            "icona": "widget",
+            "texte": "widget"
+        }
+    ]
+}
