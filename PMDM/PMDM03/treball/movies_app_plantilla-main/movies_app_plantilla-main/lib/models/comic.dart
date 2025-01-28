@@ -6,14 +6,14 @@ class Comic {
     String title;
     int issueNumber;
     String variantDescription;
-    String description;
+    String? description;
     String modified;
-    Isbn isbn;
+    String isbn;
     String upc;
     String diamondCode;
-    Ean ean;
+    String ean;
     String issn;
-    Format format;
+    String format;
     int pageCount;
     List<TextObject> textObjects;
     String resourceUri;
@@ -62,6 +62,14 @@ class Comic {
         required this.stories,
         required this.events,
     });
+
+    get getFullImagePath{
+      if (this.images != null) {
+        // Obtener el path y la ext
+        return '${thumbnail.path}/portrait_uncanny.${thumbnail.extension}';
+      }
+      return 'https://i.stack.imgur.com/GNhxO.png';
+    }
 
     factory Comic.fromJson(String str) => Comic.fromMap(json.decode(str));
 
@@ -223,7 +231,7 @@ class Creators {
 class CreatorsItem {
     String resourceUri;
     String name;
-    Role role;
+    String role;
 
     CreatorsItem({
         required this.resourceUri,
@@ -273,7 +281,7 @@ final roleValues = EnumValues({
 });
 
 class Date {
-    DateType type;
+    String type;
     String date;
 
     Date({
@@ -358,7 +366,7 @@ final formatValues = EnumValues({
 
 class Thumbnail {
     String path;
-    Extension extension;
+    String extension;
 
     Thumbnail({
         required this.path,
@@ -401,7 +409,7 @@ final isbnValues = EnumValues({
 });
 
 class Price {
-    PriceType type;
+    String type;
     double price;
 
     Price({
@@ -469,7 +477,7 @@ class Stories {
 class StoriesItem {
     String resourceUri;
     String name;
-    ItemType type;
+    String type;
 
     StoriesItem({
         required this.resourceUri,
@@ -509,8 +517,8 @@ final itemTypeValues = EnumValues({
 });
 
 class TextObject {
-    TextObjectType type;
-    Language language;
+    String type;
+    String language;
     String text;
 
     TextObject({
@@ -553,7 +561,7 @@ final textObjectTypeValues = EnumValues({
 });
 
 class Url {
-    UrlType type;
+    String type;
     String url;
 
     Url({

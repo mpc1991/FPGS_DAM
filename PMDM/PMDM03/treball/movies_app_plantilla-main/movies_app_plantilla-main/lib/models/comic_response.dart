@@ -1,13 +1,13 @@
-import 'models.dart';
+import 'package:movies_app/models/models.dart';
 
 class ComicResponse {
-    String code;
+    int code;
     String? status;
     String? copyright;
     String? attributionText;
     String? attributionHtml;
     String? etag;
-    Data? data;
+    Data data;
 
     ComicResponse({
         required this.code,
@@ -30,8 +30,16 @@ class ComicResponse {
         attributionText: json["attributionText"],
         attributionHtml: json["attributionHTML"],
         etag: json["etag"],
-        //data: Data.fromMap(json["data"]),
-        data: json["data"] != null ? Data.fromMap(json["data"]) : null, // Verificar si 'data' es null
+        data: Data.fromMap(json["data"]),
+        //data: json["data"] != null ? Data.fromMap(json["data"]) : null, // Verificar si 'data' es null
+        // data: json["data"] != null ? Data.fromMap(json["data"]) : Data(
+        //   offset: 0,
+        //   limit: 0,
+        //   total: 0,
+        //   count: 0,
+        //   results: [],
+
+    //),  // Default empty Data if null
     );
 
     // Map<String, dynamic> toMap() => {
