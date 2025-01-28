@@ -6,10 +6,12 @@ import 'package:movies_app/models/movie.dart';
 import 'package:movies_app/models/now_playing_response.dart';
 
 class PersonalProvider extends ChangeNotifier {
-  String _baseURL = 'api.themoviedb.org';
+  String _baseURL = 'gateway.marvel.com';
   String _endpoint = '3/movie/now_playing'; // debe ir modificandose
   String _popularEndpoint = '3/movie/popular';
   String _apiKey = '52d9b256a95352280deb22d50b1255be';
+  String _ts = '1991';
+  String _hash = 'c561570af98ad4f900bd7bdeca217eb3'
   String _language = 'en-US';
   String _page = '1';
 

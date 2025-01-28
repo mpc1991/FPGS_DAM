@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/providers/comic_provider.dart';
 import 'package:movies_app/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final comicsProvider = Provider.of<ComicProvider>(context, listen: true); // Selecciona la primera instancia del proveedor instanciado en Main
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cartellera'),

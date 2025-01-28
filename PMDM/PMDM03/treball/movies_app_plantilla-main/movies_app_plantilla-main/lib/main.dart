@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/providers/brand_provider.dart';
+import 'package:movies_app/providers/comic_provider.dart';
 import 'package:movies_app/screens/screens.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +11,7 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => BrandProvider(), lazy: false)
+        ChangeNotifierProvider(create: ( _ ) => ComicProvider(), lazy: false)
       ],
       child: MyApp(),
     );
