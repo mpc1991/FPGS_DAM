@@ -140,37 +140,37 @@ class Comic {
     };
 }
 
-class Characters {
-    int available;
-    String collectionUri;
-    List<Series> items;
-    int returned;
+// class Characters {
+//     int available;
+//     String collectionUri;
+//     List<Series> items;
+//     int returned;
 
-    Characters({
-        required this.available,
-        required this.collectionUri,
-        required this.items,
-        required this.returned,
-    });
+//     Characters({
+//         required this.available,
+//         required this.collectionUri,
+//         required this.items,
+//         required this.returned,
+//     });
 
-    factory Characters.fromJson(String str) => Characters.fromMap(json.decode(str));
+//     factory Characters.fromJson(String str) => Characters.fromMap(json.decode(str));
 
-    String toJson() => json.encode(toMap());
+//     String toJson() => json.encode(toMap());
 
-    factory Characters.fromMap(Map<String, dynamic> json) => Characters(
-        available: json["available"],
-        collectionUri: json["collectionURI"],
-        items: List<Series>.from(json["items"].map((x) => Series.fromMap(x))),
-        returned: json["returned"],
-    );
+//     factory Characters.fromMap(Map<String, dynamic> json) => Characters(
+//         available: json["available"],
+//         collectionUri: json["collectionURI"],
+//         items: List<Series>.from(json["items"].map((x) => Series.fromMap(x))),
+//         returned: json["returned"],
+//     );
 
-    Map<String, dynamic> toMap() => {
-        "available": available,
-        "collectionURI": collectionUri,
-        "items": List<dynamic>.from(items.map((x) => x.toMap())),
-        "returned": returned,
-    };
-}
+//     Map<String, dynamic> toMap() => {
+//         "available": available,
+//         "collectionURI": collectionUri,
+//         "items": List<dynamic>.from(items.map((x) => x.toMap())),
+//         "returned": returned,
+//     };
+// }
 
 class Series {
     String resourceUri;
@@ -180,6 +180,14 @@ class Series {
         required this.resourceUri,
         required this.name,
     });
+
+    get getFullImagePath{
+      if (this.resourceUri != null) {
+        // Obtener el path y la ext
+        return '${resourceUri}/portrait_uncanny.${resourceUri}.jpg';
+      }
+      return 'https://i.stack.imgur.com/GNhxO.png';
+    }
 
     factory Series.fromJson(String str) => Series.fromMap(json.decode(str));
 

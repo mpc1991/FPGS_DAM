@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:movies_app/models/models.dart' as models;
+
 class CastingCards extends StatelessWidget {
+  final List<models.Series> characters;
+
+  const CastingCards({super.key, required this.characters});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,14 +14,18 @@ class CastingCards extends StatelessWidget {
       height: 180,
       // color: Colors.red,
       child: ListView.builder(
-          itemCount: 10,
+          itemCount: characters.length,
           scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) => _CastCard()),
+          itemBuilder: (BuildContext context, int index) => _CastCard(character: characters[index])),
     );
   }
 }
 
 class _CastCard extends StatelessWidget {
+  final models.Series character;
+
+  const _CastCard({super.key, required this.character});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +39,7 @@ class _CastCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://placehold.co/150x300/png'),
+              image: NetworkImage(character.getFullImagePath),
               height: 140,
               width: 100,
               fit: BoxFit.cover,
@@ -40,7 +49,7 @@ class _CastCard extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'Nom Actor',
+            character.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

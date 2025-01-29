@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Canviar després per una instància de Peli
-    final String peli =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    final Comic comic = ModalRoute.of(context)?.settings.arguments as Comic;
+    final characters = comic.characters; // Accedemos directamente a los personajes desde el cómic
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar(),
+          _CustomAppBar(comic: comic),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                _PosterAndTitile(),
-                _Overview(),
-                _Overview(),
-                CastingCards(),
+                _PosterAndTitile(comic: comic),
+                _Overview(comic: comic),
+                CastingCards(characters: characters.items),
               ],
             ),
           ),
@@ -29,6 +29,10 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class _CustomAppBar extends StatelessWidget {
+  final Comic comic;
+
+  const _CustomAppBar({super.key, required this.comic});
+
   @override
   Widget build(BuildContext context) {
     // Exactament igual que la AppBaer però amb bon comportament davant scroll
@@ -46,13 +50,16 @@ class _CustomAppBar extends StatelessWidget {
           color: Colors.black12,
           padding: const EdgeInsets.only(bottom: 10),
           child: Text(
-            'Títol peli',
-            style: TextStyle(fontSize: 16),
+            comic.title,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white, // Establece el color blanco para el texto
+            ),
           ),
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
-          image: NetworkImage('https://via.placeholder.com/500x300'),
+          image: NetworkImage(comic.getFullImagePath),
           fit: BoxFit.cover,
         ),
       ),
@@ -61,6 +68,10 @@ class _CustomAppBar extends StatelessWidget {
 }
 
 class _PosterAndTitile extends StatelessWidget {
+  final Comic comic;
+
+  const _PosterAndTitile({super.key, required this.comic});
+
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -73,23 +84,27 @@ class _PosterAndTitile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/loading.gif'),
-              image: NetworkImage('https://via.placeholder.com/200x300'),
+              image: NetworkImage(comic.getFullImagePath),
               height: 150,
             ),
           ),
           const SizedBox(
             width: 20,
           ),
-          Column(
+          // Usamos Expanded porque el texto se salía de la pantalla
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment
+                .start, 
             children: [
               Text(
-                'Títol peli',
+                comic.title,
                 style: textTheme.headlineSmall,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               Text(
-                'Títol original',
+                comic.format,
                 style: textTheme.titleMedium,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
@@ -102,7 +117,7 @@ class _PosterAndTitile extends StatelessWidget {
                 ],
               )
             ],
-          )
+          )),
         ],
       ),
     );
@@ -110,12 +125,20 @@ class _PosterAndTitile extends StatelessWidget {
 }
 
 class _Overview extends StatelessWidget {
+  final Comic comic;
+
+  const _Overview({super.key, required this.comic});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Text(
-        'Labore eiusmod ad reprehenderit irure eu sunt ex minim. Lorem fugiat Lorem proident duis ea cupidatat. Commodo duis culpa reprehenderit ad elit. Velit duis officia reprehenderit ullamco sint id anim officia est. Enim mollit nisi et exercitation dolore commodo. Cillum mollit laborum non nulla cillum non do reprehenderit Lorem deserunt ex eu sunt do.',
+      child: Text( 
+        // Sacado con ayuda de chat, es necesario acceder a un array y dentro de ese array, al valor text.
+        // Adicionalmente, es posible que no tenga descripción
+        comic.textObjects.isNotEmpty
+            ? (comic.textObjects[0].text ?? "No description available.")
+            : "No description available.",
         textAlign: TextAlign.justify,
         style: Theme.of(context).textTheme.titleMedium,
       ),
