@@ -1,5 +1,4 @@
 import 'package:movies_app/models/models.dart';
-import 'package:movies_app/models/characters.dart';
 
 class Character {
   int offset;

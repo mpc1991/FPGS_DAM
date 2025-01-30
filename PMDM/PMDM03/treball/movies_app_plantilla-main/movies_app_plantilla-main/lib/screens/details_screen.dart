@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/models/character_response.dart';
 import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: Canviar després per una instància de Peli
     final Comic comic = ModalRoute.of(context)?.settings.arguments as Comic;
-    //final characters = comic.characters; // Accedemos directamente a los personajes desde el cómic
-    // Obtener los personajes relacionados con el cómic
-    //Future<CharactersResponse> charactersFuture = fetchCharacters(comic.id);
-    //final List<Result> characterList = ;
 
     return Scaffold(
       body: CustomScrollView(
