@@ -11,7 +11,7 @@ class PersonalProvider extends ChangeNotifier {
   String _popularEndpoint = '3/movie/popular';
   String _apiKey = '52d9b256a95352280deb22d50b1255be';
   String _ts = '1991';
-  String _hash = 'c561570af98ad4f900bd7bdeca217eb3'
+  String _hash = 'c561570af98ad4f900bd7bdeca217eb3';
   String _language = 'en-US';
   String _page = '1';
 

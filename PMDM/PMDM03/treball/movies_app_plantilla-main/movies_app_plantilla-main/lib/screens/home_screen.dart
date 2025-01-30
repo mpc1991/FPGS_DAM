@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final comicsProvider = Provider.of<ComicProvider>(context); // Selecciona la primera instancia del proveedor instanciado en Main
-    print(comicsProvider.onDisplayComic);
+    final comicsProvider = Provider.of<ComicProvider>(
+        context); // Selecciona la primera instancia del proveedor instanciado en Main
 
     return Scaffold(
       appBar: AppBar(

@@ -1,29 +1,48 @@
 import 'package:flutter/material.dart';
-
-import 'package:movies_app/models/models.dart' as models;
+import 'package:movies_app/models/modelsCharacter.dart';
+import 'package:movies_app/providers/comic_provider.dart';
+import 'package:provider/provider.dart';
 
 class CastingCards extends StatelessWidget {
-  final List<models.Series> characters;
+  final int idComic;
 
-  const CastingCards({super.key, required this.characters});
+  const CastingCards(this.idComic);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      width: double.infinity,
-      height: 180,
-      // color: Colors.red,
-      child: ListView.builder(
-          itemCount: characters.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) => _CastCard(character: characters[index])),
+    final characterProvider =
+        Provider.of<ComicProvider>(context, listen: false);
+
+    return FutureBuilder(
+      future: characterProvider.getOnCharactersProvider(idComic),
+      //snapshot son los datos que devuelve getOnCharactersProvider
+      builder: (BuildContext context, AsyncSnapshot<List<Result>> snapshot) {
+        if (!snapshot.hasData) {
+          return Container(
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        final casting = snapshot.data!;
+
+        return Container(
+          margin: const EdgeInsets.only(bottom: 30),
+          width: double.infinity,
+          height: 180,
+          // color: Colors.red,
+          child: ListView.builder(
+              itemCount: casting.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) =>
+                  _CastCard(character: casting[index])),
+        );
+      },
     );
   }
 }
 
 class _CastCard extends StatelessWidget {
-  final models.Series character;
-
+  final Result character;
   const _CastCard({super.key, required this.character});
 
   @override
@@ -39,7 +58,7 @@ class _CastCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(character.getFullImagePath),
+              image: NetworkImage(character.getFullProfilePath),
               height: 140,
               width: 100,
               fit: BoxFit.cover,
@@ -48,12 +67,15 @@ class _CastCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Text(
-            character.name,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-          )
+          Expanded(
+            child: Text(
+              character.name,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              softWrap: true,
+            ),
+          ),
         ],
       ),
     );

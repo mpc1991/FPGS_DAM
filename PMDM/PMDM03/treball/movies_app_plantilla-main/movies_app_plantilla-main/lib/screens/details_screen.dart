@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/character_response.dart';
 import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
@@ -7,7 +8,10 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Canviar després per una instància de Peli
     final Comic comic = ModalRoute.of(context)?.settings.arguments as Comic;
-    final characters = comic.characters; // Accedemos directamente a los personajes desde el cómic
+    //final characters = comic.characters; // Accedemos directamente a los personajes desde el cómic
+    // Obtener los personajes relacionados con el cómic
+    //Future<CharactersResponse> charactersFuture = fetchCharacters(comic.id);
+    //final List<Result> characterList = ;
 
     return Scaffold(
       body: CustomScrollView(
@@ -18,7 +22,7 @@ class DetailsScreen extends StatelessWidget {
               [
                 _PosterAndTitile(comic: comic),
                 _Overview(comic: comic),
-                CastingCards(characters: characters.items),
+                CastingCards(comic.id),
               ],
             ),
           ),
@@ -94,8 +98,7 @@ class _PosterAndTitile extends StatelessWidget {
           // Usamos Expanded porque el texto se salía de la pantalla
           Expanded(
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment
-                .start, 
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 comic.title,
@@ -133,7 +136,7 @@ class _Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Text( 
+      child: Text(
         // Sacado con ayuda de chat, es necesario acceder a un array y dentro de ese array, al valor text.
         // Adicionalmente, es posible que no tenga descripción
         comic.textObjects.isNotEmpty
