@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/modelsSeries.dart';
 
 class MovieSlider extends StatelessWidget {
   // const MovieSlider({Key? key}) : super(key: key);
+  final List<Result> series;
+
+  const MovieSlider({super.key, required this.series});
+  
 
   @override
   Widget build(BuildContext context) {
+    print(series.length);
+
     return Container(
       width: double.infinity,
       height: 270,
@@ -14,15 +21,15 @@ class MovieSlider extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text('Populars',
+            child: Text('Series',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 20,
-                itemBuilder: (_, int index) => _MoviePoster()),
+                itemCount: series.length,
+                itemBuilder: (_, int index) => _MoviePoster(serie: series[index])),
           )
         ],
       ),
@@ -31,8 +38,10 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({Key? key}) : super(key: key);
+  final Result serie;
 
+  const _MoviePoster({super.key, required this.serie});
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,12 +53,12 @@ class _MoviePoster extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'details',
-                arguments: 'detalls peli'),
+                arguments: serie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage('https://placehold.co/300x400/png'),
+                image: NetworkImage(serie.getFullImagePath),
                 width: 130,
                 height: 190,
                 fit: BoxFit.cover,
@@ -60,7 +69,7 @@ class _MoviePoster extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'Star Wars: El retorno del Jedi',
+            serie.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/models.dart';
+
+import 'package:movies_app/models/modelsSeries.dart';
 import 'package:movies_app/providers/comic_provider.dart';
 import 'package:movies_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               CardSwiper(comics: comicsProvider.onDisplayComic),
 
               // Slider de pel·licules
-              MovieSlider(),
+              MovieSlider(series: comicsProvider.onDisplaySerie),
               // Poodeu fer la prova d'afegir-ne uns quants, veureu com cada llista és independent
               // MovieSlider(),
               // MovieSlider(),

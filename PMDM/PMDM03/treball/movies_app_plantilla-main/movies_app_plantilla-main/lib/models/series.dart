@@ -39,13 +39,13 @@ class Series {
 class Result {
     int id;
     String title;
-    String description;
+    String? description;
     String resourceUri;
     List<Url> urls;
     int startYear;
     int endYear;
-    Rating rating;
-    String type;
+    String rating;
+    String? type;
     String modified;
     Thumbnail thumbnail;
     Creators creators;
@@ -76,6 +76,15 @@ class Result {
         required this.next,
         required this.previous,
     });
+
+    get getFullImagePath {
+      print('estoy en el geter de series');
+    if (this.thumbnail != null) {
+      // Obtener el path y la ext
+      return '${thumbnail.path}/portrait_uncanny.${thumbnail.extension}';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
 
     factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
 
@@ -287,7 +296,7 @@ class Stories {
 class StoriesItem {
     String resourceUri;
     String name;
-    ItemType type;
+    String type;
 
     StoriesItem({
         required this.resourceUri,
@@ -324,7 +333,7 @@ final itemTypeValues = EnumValues({
 
 class Thumbnail {
     String path;
-    Extension extension;
+    String extension;
 
     Thumbnail({
         required this.path,
@@ -355,7 +364,7 @@ final extensionValues = EnumValues({
 });
 
 class Url {
-    UrlType type;
+    String type;
     String url;
 
     Url({
