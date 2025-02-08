@@ -10,3 +10,9 @@ fs: sdf
 sdf: sdf
 UDP - sdf se ha desconectado.
 UDP - fs se ha desconectado.
+UDP - Macia se ha conectado.
+UDP - Nerea se ha conectado.
+Macia: Holas
+Nerea: Hola
+UDP - Nerea se ha desconectado.
+UDP - Macia se ha desconectado.
