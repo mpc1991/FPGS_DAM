@@ -29,7 +29,7 @@ public class Peatge {
 
     @Column(name = "name", length = 35, nullable = false)
     String name;
-    
+
     // Relaciones OneToMany con Trip
     @OneToMany(mappedBy = "idTollInput", fetch = FetchType.LAZY)
     private List<Trip> tripsAsInput;
@@ -84,6 +84,4 @@ public class Peatge {
     public void setTripsAsOutput(List<Trip> tripsAsOutput) {
         this.tripsAsOutput = tripsAsOutput;
     }
-    
-    
 }
