@@ -14,21 +14,15 @@ public class Main {
     private static String filePath = "testmpc.txt";
     private static String remoteFileName = "mpctest4.txt";
 
-    private static String dataAddress; // IP para el canal de datos
-    private static int dataPort; // Puerto para el canal de datos
-    private static int[] addressParts; // Array para almacenar partes de la dirección IP
-    private static String[] parts; // Array para almacenar partes del mensaje PASV
-
-    private static Socket socket;
-    private static BufferedReader br;
-    private static PrintWriter pr;
-    private static FileInputStream fi;
-    private static OutputStream os;
-
+    private static Socket socket; // Para la conexión al servidor
+    private static BufferedReader br; // Para recibir datos del servidor
+    private static PrintWriter pr; // Para enviar comandos al servidor
+    private static FileInputStream fi; // Para leer el archivo
+    private static OutputStream os; // Para enviar archivos al servidor
 
     public static void main(String[] args) throws IOException {
         try {
-            // 1. Conexión al canal de control
+            // 1. Conexión al servidor por hostname/puerto
             socket = new Socket(SERVER, CONTROL_PORT);
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             pr = new PrintWriter(socket.getOutputStream(), true);
@@ -39,7 +33,7 @@ public class Main {
             String response = br.readLine();
             System.out.println("Respuesta del servidor: " + response);
 
-            // 3. Nos autenticamos
+            // 3. Auth
             pr.println("USER " + USER);
             response = br.readLine();
             System.out.println("Respuesta del servidor: " + response);
@@ -52,34 +46,37 @@ public class Main {
             response = br.readLine();
             System.out.println("Respuesta del servidor: " + response);
 
-            // Parsear la respuesta para obtener la dirección y puerto del canal de datos
-            int start = response.indexOf('('); // Buscar inicio de la dirección y el puerto
-            int end = response.indexOf(')', start); // Buscar el final
-            String pasvResponse = response.substring(start + 1, end); // Extraer la información
-            String[] pasvParts = pasvResponse.split(","); // Separar la dirección IP y el puerto
-            String ip = pasvParts[0] + "." + pasvParts[1] + "." + pasvParts[2] + "." + pasvParts[3]; // formar la IP
-            int port = Integer.parseInt(pasvParts[4]) * 256 + Integer.parseInt(pasvParts[5]); // Calcular el puerto
+            // Extraer la IP y Puerto
+            int start = response.indexOf('(');                         // Buscar inicio de la dirección y el puerto
+            int end = response.indexOf(')', start);                // Buscar el final
+            String pasvResponse = response.substring(start + 1, end);  // Extraer la información
+            String[] pasvParts = pasvResponse.split(",");        // Separar la dirección IP y el puerto
+
+            // Construir la IP y calcular el puerto.
+            String ip = pasvParts[0] + "." + pasvParts[1] + "." + pasvParts[2] + "." + pasvParts[3];
+            int port = Integer.parseInt(pasvParts[4]) * 256 + Integer.parseInt(pasvParts[5]);
 
             // 5. Conectar al canal de datos usando IP/Puerto
             socket = new Socket(ip, port); // Conexión con el servidor de datos
-            // Lectura del canal de datos
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            // 6. Enviar el comando LIST para obtener los archivos del directorio
+            // 6. LIST para obtener los archivos del directorio
             pr.println("LIST");
             response = Main.br.readLine();
             System.out.println("Respuesta del servidor: " + response);
 
-            // 7. Leer los datos desde el canal de datos
+            // 7. Leer la respuesta a LIST
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line); // Mostrar el contenido de los archivos/directorios
             }
 
+            // STOR para subir datos
             pr.println("STOR " + remoteFileName);
             response = br.readLine();
             System.out.println("Respuesta del servidor: " + response);
 
+            // Leer el archivo local y enviar al servidor
             byte[] buffer = new byte[1024];
             int bytesRead;
             while ((bytesRead = fi.read(buffer)) != -1) {
@@ -90,6 +87,12 @@ public class Main {
 
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
+        } finally {
+            socket.close();
+            os.close();
+            fi.close();
+            pr.close();
+            br.close();
         }
     }
 }
