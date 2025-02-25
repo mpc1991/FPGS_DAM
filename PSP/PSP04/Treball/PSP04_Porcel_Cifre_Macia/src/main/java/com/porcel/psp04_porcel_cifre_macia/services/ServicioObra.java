@@ -33,7 +33,7 @@ public class ServicioObra {
     }
 
     /**
-     * URL: http://localhost:8080/PSP04_Porcel_Cifre_Macia_war_exploded/api/1
+     * URL: http://localhost:8080/PSP04_Porcel_Cifre_Macia_war_exploded/api/obras/1
      *
      * @param idObra int
      * @return Response
