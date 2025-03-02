@@ -12,7 +12,7 @@ class DBProvider{
     DBProvider._(){}
 
     Future<Database> get database async {
-      if (database == null) {
+      if (_database == null) {
         _database = await initDB();
       }
 
@@ -39,6 +39,6 @@ class DBProvider{
           )
         ''');
         }
-        );
+      );
     }
 }
