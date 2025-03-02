@@ -36,10 +36,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         TextStyle(fontSize: 45, fontWeight: FontWeight.w300)),
                 const Divider(),
                 SwitchListTile(
-                    value: Preferences.isDarkMode,
+                    value: Preferences.isDarkMode, // get
                     title: const Text('Dark Mode'),
                     onChanged: (value) {
-                      Preferences.isDarkMode = value;
+                      Preferences.isDarkMode = value; // set
                       final themeProvider = Provider.of<ThemeProvider>(context,listen: false);
                       value ? themeProvider.setDarkMode() : themeProvider.setLightMode();
                       setState(() {});
