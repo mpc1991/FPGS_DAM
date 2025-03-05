@@ -4,7 +4,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:qr_scan/models/scan_models.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
+/*
+* DBProvider es solo una capa de acceso a datos (DAO - Data Access Object), 
+* pero no almacena nada en memoria ni notifica cambios.
+*
+* ScanListProvider almacena la lista de scans en List<ScanModel> scans y actualiza la UI cuando cambian los datos.
+*/
 class DBProvider{
   static Database? _database;
 
@@ -82,7 +87,7 @@ class DBProvider{
     }
   }
 
-  Future<List<ScanModel?>> getScanByTipus(String tipus) async {
+  Future<List<ScanModel>> getScanByTipus(String tipus) async {
     final db = await database;
     final res = await db.query('Scans', where: 'tipus = ?', whereArgs: [tipus]);
 
