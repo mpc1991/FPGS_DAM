@@ -11,7 +11,7 @@ import 'package:qr_scan/providers/db_provider.dart';
 */
 
 class ScanListProvider extends ChangeNotifier { 
-  List<ScanModel?> scans = [];
+  List<ScanModel> scans = [];
   String tipusSeleccionat = 'http';
 
   Future<ScanModel> nouScan(String valor) async {

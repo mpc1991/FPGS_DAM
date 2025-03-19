@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_scan/models/scan_models.dart';
 import 'package:qr_scan/providers/db_provider.dart';
 import 'package:qr_scan/providers/scan_list_provider.dart';
+import 'package:qr_scan/utils/utils.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({Key? key}) : super(key: key);
@@ -18,12 +19,13 @@ class ScanButton extends StatelessWidget {
       onPressed: () {
         print('Botó polsat!');
         //DBProvider.db.database;
-        String barcodeScanRes = 'geo:123';
+        String barcodeScanRes = 'geo:39.5149312,2.7394048';
+        //String barcodeScanRes = 'https://paucasesnovescifp.cat/';
+
         final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
         scanListProvider.nouScan(barcodeScanRes);
-
-        String barcodeScanRes1 = 'https//asdasd';
-        scanListProvider.nouScan(barcodeScanRes1);
+        ScanModel nouScan = ScanModel(valor: barcodeScanRes);
+        launchURL(context, nouScan);
       },
     );
   }

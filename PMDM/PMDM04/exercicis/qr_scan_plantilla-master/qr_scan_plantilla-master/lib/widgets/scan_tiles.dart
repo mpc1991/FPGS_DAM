@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scan/providers/scan_list_provider.dart';
+import 'package:qr_scan/utils/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ScanTiles extends StatelessWidget {
   final tipus;
@@ -48,7 +50,9 @@ class ScanTiles extends StatelessWidget {
             Icons.keyboard_arrow_right, 
             color: Colors.grey
           ),
-          onTap: () {},
+          onTap: () {
+            launchURL(context, scans[index]);
+          },
         ),
       ),
     );

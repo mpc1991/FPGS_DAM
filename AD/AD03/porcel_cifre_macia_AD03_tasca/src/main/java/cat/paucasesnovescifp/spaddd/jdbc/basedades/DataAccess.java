@@ -17,10 +17,6 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author seek_
- */
 public class DataAccess {
 
     public static List<Editor> editors = new ArrayList<>(); // Buffer
