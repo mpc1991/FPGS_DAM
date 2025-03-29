@@ -11,7 +11,7 @@ import java.util.Base64;
 
 import static com.porcel.keygens.KeyHandler.*;
 
-public class FilServidor implements Runnable{
+public class FilServidor implements Runnable {
     private final Socket socket;
     private final PrivateKey privateKey;
     private static PublicKey publicKey;
@@ -29,8 +29,8 @@ public class FilServidor implements Runnable{
 
     @Override
     public void run() {
-        try(DataInputStream flujoEntrada = new DataInputStream(socket.getInputStream());
-            DataOutputStream flujoSalida = new DataOutputStream(socket.getOutputStream())) {
+        try (DataInputStream flujoEntrada = new DataInputStream(socket.getInputStream());
+             DataOutputStream flujoSalida = new DataOutputStream(socket.getOutputStream())) {
 
             while (true) {
                 String mensaje;

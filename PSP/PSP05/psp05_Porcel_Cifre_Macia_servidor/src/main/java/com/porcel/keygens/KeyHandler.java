@@ -21,7 +21,7 @@ public class KeyHandler {
         return new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
     }
 
-    public static  String descifrarMensajeAES(String mensajeCifradoBase64, SecretKey secretKey) throws Exception {
+    public static String descifrarMensajeAES(String mensajeCifradoBase64, SecretKey secretKey) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         byte[] mensajeDescifrado = cipher.doFinal(Base64.getDecoder().decode(mensajeCifradoBase64));
