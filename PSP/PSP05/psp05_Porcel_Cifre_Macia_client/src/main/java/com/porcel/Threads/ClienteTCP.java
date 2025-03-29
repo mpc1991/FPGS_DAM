@@ -38,6 +38,5 @@ public class ClienteTCP extends Thread {
     // Método para detener el hilo
     public void detener() {
         this.interrupt();
-
     }
 }

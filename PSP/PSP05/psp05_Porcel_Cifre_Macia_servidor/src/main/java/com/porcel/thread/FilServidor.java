@@ -38,7 +38,7 @@ public class FilServidor implements Runnable{
                 try {
                     mensaje = flujoEntrada.readUTF(); // Puede lanzar EOFException si el cliente cierra el socket
                 } catch (EOFException e) {
-                    System.out.println("Cliente cerró la conexión abruptamente.");
+                    //System.out.println("Cliente cerró la conexión abruptamente.");
                     break; // Salimos del bucle si el cliente cierra el socket
                 }
 
@@ -51,35 +51,82 @@ public class FilServidor implements Runnable{
                     flujoSalida.writeUTF(clavePublicaBase64);
                     System.out.println("Clave pública enviada al cliente");
                 } else if (mensaje.startsWith("CLAVE_AES")) {
-                    // Recibir y descifrar la clave AES
-                    String claveCifradaBase64 = mensaje.split(" ")[1];
-                    secretKey = descifrarClaveAES(claveCifradaBase64, privateKey);
-                    System.out.println("Clave AES recibida y almacenada");
-                } else if (mensaje.startsWith("Cliente:")) {
-                    String mensajeCifradoBase64 = mensaje.split(" ")[1];
-                    String mensajeDescifrado = descifrarMensajeAES(mensajeCifradoBase64, secretKey);
+                    try {
+                        // Recibir y descifrar la clave AES
+                        String[] partes = mensaje.split(" ", 2);
+                        if (partes.length < 2) {
+                            System.out.println("Error: formato de CLAVE_AES incorrecto.");
+                            continue;
+                        }
+                        String claveCifradaBase64 = partes[1];
+                        String datosDescifrados = descifrarClaveAES(claveCifradaBase64, privateKey);
 
-                    // Separar hash y mensaje original
-                    String[] partes = mensajeDescifrado.split(":", 2);
-                    if (partes.length < 2) {
-                        System.out.println("Mensaje de descifrado no contiene el formato correcto");
+                        String[] datos = datosDescifrados.split(":", 2);
+                        if (datos.length < 2) {
+                            System.out.println("Error: clave simétrica descifrada mal formada.");
+                            continue;
+                        }
+
+                        String hashRecibido = datos[0];
+                        String claveSimetrica = datos[1];
+
+                        if (verificarHash(claveSimetrica, hashRecibido)) {
+                            secretKey = obtenerClaveAESDesdeBase64(claveSimetrica);
+                            System.out.println("Clave AES recibida y verificada correctamente.");
+                            String acuseCifrado = cifrarMensajeAES("DataReceived", secretKey);
+                            flujoSalida.writeUTF(acuseCifrado); // Acuse de recibo cifrado
+                        } else {
+                            System.out.println("¡Alerta! Integridad de clave AES comprometida.");
+                            socket.close();
+                            return;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error al procesar CLAVE_AES: " + e.getMessage());
+                        socket.close();
                         return;
                     }
+                } else if (mensaje.startsWith("Cliente:")) {
+                    try {
+                        String[] partesMensaje = mensaje.split(" ", 2);
+                        if (partesMensaje.length < 2) {
+                            System.out.println("Error: formato de mensaje incorrecto.");
+                            continue;
+                        }
 
-                    String hashRecibido = partes [0];
-                    String mensajeOriginal = partes [1];
+                        String mensajeCifradoBase64 = partesMensaje[1];
+                        String mensajeDescifrado = descifrarMensajeAES(mensajeCifradoBase64, secretKey);
 
-                    // Verificar la integridad
-                    if (verificarHash(mensajeOriginal, hashRecibido)) {
-                        System.out.println("Mensaje recibido al cliente: " + mensajeOriginal);
-                    } else {
-                        System.out.println("Alerta! integridad comprometida");
+                        // Separar hash y mensaje original
+                        String[] partes = mensajeDescifrado.split(":", 2);
+                        if (partes.length < 2) {
+                            System.out.println("Mensaje de descifrado no contiene el formato correcto");
+                            continue;
+                        }
+
+                        String hashRecibido = partes[0];
+                        String mensajeOriginal = partes[1];
+
+                        // Verificar la integridad
+                        if (verificarHash(mensajeOriginal, hashRecibido)) {
+                            System.out.println("Mensaje recibido del cliente: " + mensajeOriginal);
+
+                            // Enviar acuse de recibo cifrado al cliente
+                            String acuseCifrado = cifrarMensajeAES("DataReceived", secretKey);
+                            flujoSalida.writeUTF(acuseCifrado); // Acuse de recibo cifrado
+                        } else {
+                            System.out.println("¡Alerta! Integridad comprometida");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error al procesar mensaje del cliente: " + e.getMessage());
+                        socket.close();
+                        return;
                     }
-                    System.out.println("Mensaje recibido: " + mensajeDescifrado);
                 }
             }
+            socket.close();
+            System.out.println("Conexión con cliente cerrada.");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Error en el servidor: " + e.getMessage());
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.porcel.Cliente;
 
+import com.porcel.Threads.ClienteTCP;
 import com.porcel.keys.KeyHandlers;
 
 import javax.crypto.SecretKey;
@@ -27,6 +28,8 @@ public class Cliente {
             DataInputStream flujoEntrada = new DataInputStream(socket.getInputStream());
             DataOutputStream flujoSalida = new DataOutputStream(socket.getOutputStream());
 
+
+
             // Solicitar la clave pública al servidor
             flujoSalida.writeUTF("getPubKey");
             String clavePublicaBase64 = flujoEntrada.readUTF();
@@ -47,10 +50,17 @@ public class Cliente {
                 if (mensaje.equals("exit")) {
                     break;
                 }
+                // Cifrar el mensaje antes de enviarlo al servidor
                 String mensajeCifrado = cifrarMensajeAES(mensaje, secretKey);
                 flujoSalida.writeUTF("Cliente: " + mensajeCifrado);
-            }
 
+                // Esperar la respuesta del servidor (que estará cifrada)
+                String respuestaCifrada = flujoEntrada.readUTF();
+
+                // Descifrar la respuesta del servidor
+                String mensajeDescifrado = descifrarMensajeAES(respuestaCifrada, secretKey);
+                System.out.println("Mensaje del servidor: " + mensajeDescifrado);
+            }
             // Cerramos recursos y notificamos al cliente
             System.out.println("Desconectando...");
             socket.close();

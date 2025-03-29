@@ -20,9 +20,13 @@ public class KeyHandlers {
     }
 
     public static String cifrarClaveAES(SecretKey clave, PublicKey publicKey) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException {
+        String hashClave = generarHash(Base64.getEncoder().encodeToString(clave.getEncoded()));
+        String datosParaCifrar = hashClave + ":" + Base64.getEncoder().encodeToString(clave.getEncoded());
+
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] claveCifrada = cipher.doFinal(clave.getEncoded());
+        byte[] claveCifrada = cipher.doFinal(datosParaCifrar.getBytes());
+
         return Base64.getEncoder().encodeToString(claveCifrada);
     }
 
@@ -40,5 +44,12 @@ public class KeyHandlers {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(mensaje.getBytes());
         return Base64.getEncoder().encodeToString(hash);
+    }
+
+    public static  String descifrarMensajeAES(String mensajeCifradoBase64, SecretKey secretKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] mensajeDescifrado = cipher.doFinal(Base64.getDecoder().decode(mensajeCifradoBase64));
+        return new String(mensajeDescifrado);
     }
 }
