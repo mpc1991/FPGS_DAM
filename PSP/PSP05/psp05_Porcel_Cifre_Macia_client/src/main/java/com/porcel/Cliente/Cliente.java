@@ -1,5 +1,7 @@
 package com.porcel.Cliente;
 
+import com.porcel.Thread.ClienteTCP;
+
 import javax.crypto.SecretKey;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,6 +23,7 @@ public class Cliente {
     public Cliente() throws IOException {
         // Conectamos al servidor utilizando un Socket TCP
         try (Socket socket = new Socket(HOST, PORT)) {
+
             // Creamos flujo de entrada/salida para enviar/recibir datos TCP.
             DataInputStream flujoEntrada = new DataInputStream(socket.getInputStream());
             DataOutputStream flujoSalida = new DataOutputStream(socket.getOutputStream());
@@ -38,26 +41,33 @@ public class Cliente {
             flujoSalida.writeUTF("CLAVE_AES " + claveCifradaBase64);
             System.out.println("Clave AES: " + claveCifradaBase64 + "enviada al servidor");
 
+            // Creamos un hilo de escucha de respuestas del servidor
+            ClienteTCP clienteTCP = new ClienteTCP(flujoEntrada, secretKey);
+            clienteTCP.start();
+
             // Bucle para enviar mensajes
             while (true) {
+                // Esperar antes de la siguiente iteración
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    System.out.println("Interrupción en la espera: " + e.getMessage());
+                }
+
                 System.out.println("Mensaje: ");
                 String mensaje = scanner.nextLine(); // Leer mensaje desde la consola
-                if (mensaje.equals("exit")) { // Salir si se escribe exit
-                    break;
-                }
+
                 // Cifrar el mensaje antes de enviarlo al servidor
                 String mensajeCifrado = cifrarMensajeAES(mensaje, secretKey);
                 flujoSalida.writeUTF("Cliente: " + mensajeCifrado);
-
-                // Esperar la respuesta cifrada del servidor
-                String respuestaCifrada = flujoEntrada.readUTF();
-
-                // Descifrar la respuesta cifrada del servidor
-                String mensajeDescifrado = descifrarMensajeAES(respuestaCifrada, secretKey);
-                System.out.println("Mensaje del servidor: " + mensajeDescifrado);
+                if (mensaje.equals("exit")) { // Salir si se escribe exit
+                    break;
+                }
             }
             // Cerramos recursos y notificamos al cliente
             System.out.println("Desconectando...");
+            clienteTCP.detener();
+            clienteTCP.join(); // Esperar a que el hilo termine
         } catch (InterruptedException e) {
             System.out.println("Interrupción: " + e.getMessage());
         } catch (Exception e) {
