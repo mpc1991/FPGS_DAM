@@ -3,6 +3,7 @@ package com.porcel.server;
 import com.porcel.keygens.GeneradorKeyPair;
 import com.porcel.thread.FilServidor;
 
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.KeyPair;
@@ -13,7 +14,7 @@ public class Server {
     private static KeyPair keyPair;
 
     public Server() {
-        try (ServerSocket serverSocket = new ServerSocket(port)) { // Arranca el servidor
+        try (ServerSocket serverSocket = new ServerSocket(port,10, InetAddress.getLoopbackAddress())) { // Arranca el servidor
             System.out.println("Server started on port: " + port + ", waiting connection...");
 
             // Generar par de claves RSA(publica y privada)

@@ -33,6 +33,8 @@ public class KeyHandler {
     // Verifica si el hash calculado del mensaje coincide con el hash recibido.
     public static boolean verificarHash(String mensaje, String hashRecibido) throws NoSuchAlgorithmException {
         String hashCalculado = generarHash(mensaje);
+        System.out.println(hashRecibido + " hash received");
+        System.out.println(hashCalculado + "hash calculated");
         return hashCalculado.equals(hashRecibido);
     }
 

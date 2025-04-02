@@ -115,7 +115,7 @@ public class FilServidor implements Runnable {
                             System.out.println("Mensaje recibido del cliente: " + mensajeOriginal);
 
                             // Enviar acuse de recibo cifrado al cliente
-                            String acuseCifrado = cifrarMensajeAES("DataReceived", secretKey);
+                            String acuseCifrado = cifrarMensajeAES("DataReceived & hash verified", secretKey);
                             flujoSalida.writeUTF(acuseCifrado); // Acuse de recibo cifrado
                         } else {
                             System.out.println("¡Alerta! Integridad comprometida");
