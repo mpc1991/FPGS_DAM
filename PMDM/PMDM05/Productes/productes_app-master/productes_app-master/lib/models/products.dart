@@ -32,4 +32,8 @@ class Product {
         "picture": picture,
         "price": price,
     };
+
+    setPicture(String url) {
+      this.picture = url;
+    }
 }

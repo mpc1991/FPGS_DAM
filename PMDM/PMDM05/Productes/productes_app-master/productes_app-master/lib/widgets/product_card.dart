@@ -5,9 +5,13 @@ import '../models/models.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   const ProductCard({Key? key, required this.product}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
+
+    print('${product.name}, ${product.picture}');
+    
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -21,8 +25,11 @@ class ProductCard extends StatelessWidget {
             _BackgroudWidget(product.picture),
             _ProductDetails(product.name, product.id!),
             Positioned(top: 0, right: 0, child: _PriceTag(product.price)),
-            //TODO: Mostrar de forma condicional depenent de si el producte està disponible o no
-            Positioned(top: 0, left: 0, child: _Availability(product.available)),
+            if (!product.available) ...[ // Condicional para añadir etiqueta
+              Positioned(top: 0, left: 0, child: _Availability("Reservat")),
+             ] else ...[ // Eliminar el 'else' si no queremos etiqueta 'Disponible'
+              Positioned(top: 0, left: 0, child: _Availability("Disponible")),
+             ]
           ],
         ),
       ),
@@ -43,7 +50,7 @@ class ProductCard extends StatelessWidget {
 }
 
 class _BackgroudWidget extends StatelessWidget {
-  String? url;
+  final String? url;
 
    _BackgroudWidget(this.url, {Key? key}) : super(key: key);
 
@@ -54,11 +61,15 @@ class _BackgroudWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        child: FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage(url!),
-          fit: BoxFit.cover,
-        ),
+        child: url == null // if
+          // true
+          ? Image(image: AssetImage('assets/no-image.png')) // url es null, usa esta img
+          // else
+          : FadeInImage(                                    // url NO es null, esa esta img
+            placeholder: AssetImage('assets/jar-loading.gif'),
+            image: NetworkImage(url!),
+            fit: BoxFit.cover,
+        )
       ),
     );
   }
@@ -147,7 +158,7 @@ class _PriceTag extends StatelessWidget {
 }
 
 class _Availability extends StatelessWidget {
-  final bool available;
+  final String available;
 
   const _Availability(this.available,{
     Key? key,
@@ -161,7 +172,7 @@ class _Availability extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            available.toString(),
+            available,
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
