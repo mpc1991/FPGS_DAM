@@ -13,6 +13,7 @@ class Product {
         required this.name,
         this.picture,
         required this.price,
+        this.id, // Añadido a mano
     });
 
     factory Product.fromJson(String str) => Product.fromMap(json.decode(str));
@@ -33,7 +34,17 @@ class Product {
         "price": price,
     };
 
-    setPicture(String url) {
-      this.picture = url;
+    // Getter que devuelve una copia del propio Producto.
+    Product getProduct() {
+      Product product = new Product(available: this.available, name: this.name,picture: this.picture, id: this.id, price: this.price);
+      return product;
     }
+
+    Product getProductDartEdition() => Product(
+      available: this.available, 
+      name: this.name,
+      picture: this.picture, 
+      id: this.id, 
+      price: this.price 
+    );
 }
