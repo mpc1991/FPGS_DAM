@@ -11,7 +11,7 @@ class Product {
     Product({
         required this.available,
         required this.name,
-        required this.picture,
+        this.picture,
         required this.price,
     });
 

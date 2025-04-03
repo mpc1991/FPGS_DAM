@@ -11,7 +11,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     print('${product.name}, ${product.picture}');
-    
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -63,7 +63,10 @@ class _BackgroudWidget extends StatelessWidget {
         height: 400,
         child: url == null // if
           // true
-          ? Image(image: AssetImage('assets/no-image.png')) // url es null, usa esta img
+          ? Image(                                          // url es null, usa esta img
+            image: AssetImage('assets/no-image.png'),
+            fit: BoxFit.cover,
+            ) 
           // else
           : FadeInImage(                                    // url NO es null, esa esta img
             placeholder: AssetImage('assets/jar-loading.gif'),
