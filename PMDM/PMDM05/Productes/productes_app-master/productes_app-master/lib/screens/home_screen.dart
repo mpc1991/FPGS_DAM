@@ -37,6 +37,7 @@ class HomeScreen extends StatelessWidget {
           onTap: () {
             // Guardamos el producto seleccionado para modificarlo o visualizarlo
             // Rellenamos el atributo selectedProduct de la classe services/product_services
+            // Nos movemos a la pantalla product sin pasarle el producto ya que este está almacenado en services/product_services
             productService.selectedProduct = productService.products[index].getProduct(); // setter en Dart
             productService.setProduct(productService.products[index].getProduct()); // setter en Java
             Navigator.of(context).pushNamed('product');
