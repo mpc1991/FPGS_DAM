@@ -1,0 +1,99 @@
+### 🔄 Flujo general:
+- HomeScreen carga los productos desde Firebase a través de ProductService.
+- Al tocar un producto, se guarda como `selectedProduct` y se navega a ProductScreen.
+- En ProductScreen se usa `ProductFormProvider` para editar el producto.
+- Al guardar, `ProductService` decide si actualizar o crear un producto.
+
+## Widgets clave usados:
+- ListView.builder → Para mostrar la lista de productos
+- GestureDetector / InkWell → Para detectar tap en productos
+- Form, TextFormField → Para editar producto
+- Switch / Checkbox → Para disponibilidad
+- Image.network → Para mostrar imagen por URL
+- FadeInImage / Image.asset / Image.file → Para mostrar imágenes según origen
+- ClipRRect → Para redondear las esquinas de las imágenes
+- Opacity → Para aplicar transparencia sobre las imágenes
+
+
+## API FireBase:
+https://firebase.google.com/
+Go to console -> proyecto -> Realtime Database 
+
+## Cloudinary.com
+https://cloudinary.com/
+Al subir una imagen devuelve una URL accesible públicamente
+
+## Postman:
+Consultar la URL y copiar el JSON
+
+## JSON:
+https://app.quicktype.io/
+Generar el jSON
+
+1. models
+- models.dart
+- products.dart ## JSON generado desde Quicktype
+ 
+2. providers // se usan para almacenar objetos sin tener que pasarlos por parametro
+- providers.dart
+- login_from_provider.dart - (ChangeNotifier)
+- product_from_provider - (ChangeNotifier) 
+	- contenedor global del producto temporal
+	- usado en product_screen para manejar el formulario
+	
+
+3. services // Lógica de negocio de la aplicación
+- services.dart
+- product_service - (Changenotifier) - Contiene la URL de la BBDD
+	- Contiene la lista de productos de la BBDD
+	- Home_screens llama a product_services para obtener los productos de firebase
+	- product_service llama a product_card
+	- Contiene la lógica para hacer CRUD a la BBDD
+		- `loadProducts()`, 
+		- `updateProduct()`, 
+		- `saveOrCreateProduct()`
+		- 'uploadImage()'
+
+4. screens
+- loading_screen 
+	- pantalla de loading
+- home_screen 
+	- Obtiene `services/product_service` usando `Provider`. 
+	- Si `productService.isLoading == true`, muestra `LoadingScreen`.
+	- Contiene el botón para añadir un nuevo producto
+		- salta a la página product_screen
+	- Cuando los productos están cargados, muestra la pantalla principal:
+		- Usa `ListView.builder` para recorrer la lista de productos.
+		- Cada producto se muestra con `widgets/product_card`.
+		- Llama a la clase product_card para mostrar cada producto
+		- Al hacer tap en un producto:
+			- Guarda el producto seleccionado en 							`services/productService.selectedProduct`.
+			- Navega a la pantalla de product_screen.
+- product_screen
+	- Muestra la información detallada del producto seleccionado
+	- Muestra la imagen llamando a widgets/product_image
+	- Se invoca desde Home Screen
+		- Al clickar encima de un producto
+		- Al clickar sobre el "+" para añadir un nuevo producto
+	- Al guardar el estado del producto llama a Product_service.saveOrCreate
+	- Añadir/modificar foto
+		- cloudinary.com, devuelve URL de la foto subida
+		- se añade la URL a la BBDD de firabase
+
+5. widgets
+- product_card - Usado dentro del ListView.builder en HomeScreen
+	- Crea variable Product sin inicializar
+	- Inicializa Product en el constructor
+	- Inicia las imágenes de cada producto
+- product_image
+	- Muestra la imagen en product_screen, recibe la URL en el constructor
+	- Se llama desde product_screen
+
+## Extras
+## dependencies .yaml (cntrl+shift+p --> pubsecAssist: add/update --> http)
+	- http → para comunicación con Firebase
+	- image_picker → para acceder a la cámara o galería
+## ChangeNotifier
+	- puedes usar el método notifyListeners() para notificar a los widgets 			suscritos que el estado ha cambiado
+	- ¿Cómo escuchan los widgets? - Usando Provider.of<T>(context)
+	- Se usa principalmente en los providers para actualizar la UI automáticamente.
