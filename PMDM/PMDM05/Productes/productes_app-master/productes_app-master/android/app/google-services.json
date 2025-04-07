@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "221144059340",
+    "firebase_url": "https://flutter-app-productes-mpc-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flutter-app-productes-mpc",
+    "storage_bucket": "flutter-app-productes-mpc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221144059340:android:b82c2ed8244399b9346169",
+        "android_client_info": {
+          "package_name": "com.example.productes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSPs7IKRGSjlBlochjoeOpv-oDrr4YT4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221144059340:android:85705e9f04405d43346169",
+        "android_client_info": {
+          "package_name": "com.flutter.dev.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSPs7IKRGSjlBlochjoeOpv-oDrr4YT4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
