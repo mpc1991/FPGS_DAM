@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
@@ -22,16 +24,8 @@ class ProductImage extends StatelessWidget {
           child: ClipRRect( // Redondear las esquinas del contenedor.
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25), topRight: Radius.circular(25)),
-            child: url == null          // if null
-                ? Image.asset(          // null
-                    'assets/no-image.png',
-                    fit: BoxFit.cover,
-                  )
-                : FadeInImage(          // not null
-                    placeholder: AssetImage('assets/jar-loading.gif'),
-                    image: NetworkImage(url!),
-                    fit: BoxFit.cover),
-          ),
+            child: getImage(url), // Se crea un widget para mostrar aqui
+          )
         ),
       ),
     );
@@ -49,4 +43,27 @@ class ProductImage extends StatelessWidget {
               offset: Offset(0, 5),
             )
           ]);
+
+  // Lógica para ver qué imagen devolvemos segun el contenido de URL
+  Widget getImage(String? url){
+    if (url == null) {        
+      // Si no hay imagen, se muestra una imagen por defecto desde los assets
+      return Image.asset(          
+        'assets/no-image.png',
+        fit: BoxFit.cover,
+        );
+    } else if (url.startsWith('http')) {
+      // Si la URL apunta a una imagen de Internet, se usa FadeInImage para mostrar una carga progresiva
+      return FadeInImage(
+        placeholder: AssetImage('assets/jar-loading.gif'),
+        image: NetworkImage(url!), // Si empieza por HTTP, devolvemos la URL
+        fit: BoxFit.cover);
+    } else {
+      // Si la URL es una ruta local, se carga la imagen desde el dispositivo
+      return Image.file(
+        File(url), // Devolvemos la imagen local
+        fit: BoxFit.cover,
+      );
+    }
+  }
 }

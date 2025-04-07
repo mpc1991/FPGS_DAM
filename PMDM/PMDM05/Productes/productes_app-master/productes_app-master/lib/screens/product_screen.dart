@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:productes_app/providers/product_form_provider.dart';
 import 'package:productes_app/services/services.dart';
 import 'package:productes_app/widgets/widgets.dart';
@@ -70,9 +71,20 @@ class _ProductScreenBody extends StatelessWidget {
                   top: 60,
                   right: 20,
                   child: IconButton(
-                    onPressed: () {
-                      //TODO: Implementar funcionalitat de cercar imatge de la galeria
+                    onPressed: () async{
+                      // Abre la cámara o la galeria para tomar una foto y obtiene la ruta de la imagen seleccionada.
+                      final ImagePicker picker = ImagePicker();
+
+                      // Pick an image.
+                      //final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+                      // Capture a photo.
+                      final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+
+                      // Actualiza la imagen del producto usando productService.updateSelectedImage().
+                      productService.updateSelectedImage(photo!.path);
                     },
+
                     icon: Icon(
                       Icons.camera_alt_outlined,
                       size: 30,
@@ -95,15 +107,27 @@ class _ProductScreenBody extends StatelessWidget {
       // Botón flotante para guardar el producto
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.save_outlined), // Icono de guardar
-          onPressed: (() {
-            //TODO: Emmagatzemar producte
+          child: productService.isSaving
+          ? CircularProgressIndicator(color: Colors.white)
+          : Icon(Icons.save_outlined), // Icono de guardar
+          onPressed: productService.isSaving //if
+          ? null // Si se está guardando, deshabilita el botón
+          : (() async {
+            //Emmagatzemar producte
             if (!productForm.isValidForm()) { // validamos si el formulario es valido
               return;
             } else {
+              
+              // llama a uploadImage
+              final String? imageUrl = await productService.uploadImage();
+              if (imageUrl != null) {
+                productForm.tempProduct.picture = imageUrl;
+              }
               // Llama a saveOrCreateProduct() que decide si crear o actualizar
               // en services/productServices
               productService.saveOrCreateProduct(productForm.tempProduct);
+
+              
             }
 
           })),

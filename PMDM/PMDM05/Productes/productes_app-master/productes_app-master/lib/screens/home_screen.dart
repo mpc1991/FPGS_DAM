@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productes_app/models/products.dart';
 import 'package:productes_app/screens/loading_screen.dart';
 import 'package:productes_app/services/services.dart';
 import 'package:productes_app/widgets/widgets.dart';
@@ -44,9 +45,27 @@ class HomeScreen extends StatelessWidget {
           }
         ),
       ),
+
+      // FloatingButton para añadir nuevos productos
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add), // Icono de añadir producto
-        onPressed: () {},
+        onPressed: () {
+          // Creamos nueva instancia de un producto vacía
+          // Rellenamos el atributo selectedProduct de la classe services/product_services
+          // Nos movemos a la pantalla product sin pasarle el producto ya que este está almacenado en services/product_services
+
+          // Creamos y asignamos nuevo producto formato Dart
+          productService.selectedProduct = new Product(available: true, name: "", price: 0); 
+
+          productService.newPicture = null;
+
+          // Creamos nuevo producto formato Java
+          Product product = new Product(available: true, name: "", price: 0); 
+          productService.setProduct(product); // setter en Java
+
+          // Navegamos a la ventana producto
+          Navigator.of(context).pushNamed('product');
+        },
       ),
     );
   }

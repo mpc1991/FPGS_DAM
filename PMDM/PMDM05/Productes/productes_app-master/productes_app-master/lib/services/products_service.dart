@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:productes_app/models/products.dart';
@@ -14,6 +15,8 @@ class ProductsService extends ChangeNotifier{
   final List<Product> products = []; // lista de productos
   // producto a modificar antes de guardarlo en la lista y la BBDD
   late Product selectedProduct; // se rellena desde home_screen en onTap().
+  File? newPicture; // contendrá la imagen a subir
+
   bool isLoading = true; 
   bool isSaving = false;
 
@@ -50,12 +53,14 @@ class ProductsService extends ChangeNotifier{
     this.selectedProduct = product;
   }
 
+  // Guardar los cambios en el producto
   Future saveOrCreateProduct (Product product) async {
     isSaving = true;
     notifyListeners();
 
       if (product.id == null) {
         // Creant producte
+        await createProduct(product);
 
       } else {
         // Actualitzant producte
@@ -68,9 +73,9 @@ class ProductsService extends ChangeNotifier{
 
   Future<String> updateProduct (Product product) async {
     // Construimos la URL para hacer la petición PUT a Firebase
-    final url = Uri.https(_baseUrl, 'products/${product.id}.json');
-    final respuesta = await http.put(url, body: product.toJson()); // Hacemos la petición HTTP PUT
-    final decodeData = respuesta.body;
+    final url = Uri.https(_baseUrl, 'products/${product.id}.json'); // ruta principal/id
+    final respuesta = await http.put(url, body: product.toJson()); // Hacemos la petición HTTP PUT = modificar
+    final decodeData = respuesta.body; // String de datos
     print (decodeData);
 
     // Actualiza la lista local de productos
@@ -78,10 +83,84 @@ class ProductsService extends ChangeNotifier{
     await loadProducts();
 
     // Forma para quitar el producto de la lista local sin llamar a loadProducts
+    // más eficiente al no tener que volver a cargar la lista de la BBDD
     //final index = this.products.indexWhere((element) => element.id == product.id);
     //this.products[index] = product;
 
     return product.id!;
+  }
 
+    Future<String> createProduct (Product product) async {
+    // Construimos la URL para hacer la petición PUT a Firebase
+    final url = Uri.https(_baseUrl, 'products.json'); // ruta principal
+    final respuesta = await http.post(url, body: product.toJson()); // Hacemos la petición HTTP POST = añadir
+    final decodeData = json.decode(respuesta.body); // mapa de datos para poder acceder a sus atributos
+    print (decodeData['name']); // Acceso a un atributo en concreto
+
+    // Asignamos el id al producto que nos han pasado
+    product.id = (decodeData['name']);  // setter tipo dart
+
+    // Actualiza la lista local de productos
+    // LoadProducts vacía la lista y vuelve a llenarla con los productos actuales.
+    //await loadProducts();
+
+    // Forma para añadir el producto de la lista local sin llamar a loadProducts
+    // más eficiente al no tener que volver a cargar la lista de la BBDD
+    this.products.add(product); // Añadimos el producto a la lista
+
+    return product.id!;
+  }
+
+  // Almacena temporalmente una nueva imagen y actualiza el producto actual con la nueva ruta de la imagen
+  void updateSelectedImage(String path){ // Recibimos el path de la img
+    this.newPicture = null;
+    this.newPicture = File.fromUri(Uri(path: path)); // Almacenamos el path en newPicture
+    this.selectedProduct.picture = path; // Setter al atributo picture
+
+    notifyListeners();
+  }
+
+  Future<String?> uploadImage() async {
+    if (this.newPicture == null) {
+      return null;
+    } else {
+      this.isSaving = true;
+      notifyListeners();
+
+      final url;
+      final imageUploadRequest;
+      final file;
+      final streamResponse;
+      final response;
+      final decodeData;
+
+      // URL POST de cloudinary
+      // https://api.cloudinary.com/v1_1/<cloud name>/<resource_type>/upload
+      url = Uri.parse('https://api.cloudinary.com/v1_1/dq6ayqckh/image/upload?upload_preset=PMDM05-MPC'); 
+
+      imageUploadRequest = http.MultipartRequest('POST', url);
+
+      file = await http.MultipartFile.fromPath('file', newPicture!.path);
+
+      imageUploadRequest.files.add(file);
+
+      streamResponse = await imageUploadRequest.send();
+      response = await http.Response.fromStream(streamResponse); // respuesta
+      
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        print('Hi ha agut un error: productService.uploadImage');
+        print(response.body);
+
+        return null;
+      }
+
+      this.newPicture = null;
+
+      decodeData = json.decode(response.body);
+
+      this.isSaving =false;
+      //notifyListeners();
+      return decodeData['secure_url'];
+    }
   }
 }
