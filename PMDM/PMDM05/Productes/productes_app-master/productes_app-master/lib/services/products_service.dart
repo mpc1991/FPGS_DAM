@@ -17,6 +17,7 @@ class ProductsService extends ChangeNotifier{
   late Product selectedProduct; // se rellena desde home_screen en onTap().
   File? newPicture; // contendrá la imagen a subir
 
+
   bool isLoading = true; 
   bool isSaving = false;
 
@@ -75,8 +76,6 @@ class ProductsService extends ChangeNotifier{
     // Construimos la URL para hacer la petición PUT a Firebase
     final url = Uri.https(_baseUrl, 'products/${product.id}.json'); // ruta principal/id
     final respuesta = await http.put(url, body: product.toJson()); // Hacemos la petición HTTP PUT = modificar
-    final decodeData = respuesta.body; // String de datos
-    print (decodeData);
 
     // Actualiza la lista local de productos
     // LoadProducts vacía la lista y vuelve a llenarla con los productos actuales.
@@ -95,7 +94,7 @@ class ProductsService extends ChangeNotifier{
     final url = Uri.https(_baseUrl, 'products.json'); // ruta principal
     final respuesta = await http.post(url, body: product.toJson()); // Hacemos la petición HTTP POST = añadir
     final decodeData = json.decode(respuesta.body); // mapa de datos para poder acceder a sus atributos
-    print (decodeData['name']); // Acceso a un atributo en concreto
+    print (decodeData['name']); // Acceso a un atributo en concreto (id)
 
     // Asignamos el id al producto que nos han pasado
     product.id = (decodeData['name']);  // setter tipo dart
@@ -154,12 +153,7 @@ class ProductsService extends ChangeNotifier{
         return null;
       }
 
-      this.newPicture = null;
-
       decodeData = json.decode(response.body);
-
-      this.isSaving =false;
-      //notifyListeners();
       return decodeData['secure_url'];
     }
   }

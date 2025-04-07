@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../ui/input_decorations.dart';
 
 // Pantalla principal para mostrar y editar un producto
+
 class ProductScreen extends StatelessWidget {
   const ProductScreen({Key? key}) : super(key: key);
 
@@ -18,6 +19,8 @@ class ProductScreen extends StatelessWidget {
     // Este servicio almacenado el producto seleccionado en su propiedad selectedProduct
     final ProductsService productService = Provider.of<ProductsService>(context);
 
+    // Usamos ChangeNotifierProvider para crear un provider temporal que gestionará el formulario del producto.
+    // Esto permite que los cambios en el formulario (nombre, precio, disponible) actualicen el estado de forma reactiva.
     return ChangeNotifierProvider(
       // 'create' se utiliza para crear y pasar el producto seleccionado al proveedor ProductFromProvider
       // Pasamos el producto seleccionado desde productService (selectedProduct) al ProductFromProvider
@@ -66,7 +69,7 @@ class _ProductScreenBody extends StatelessWidget {
                   ),
                 ),
 
-                // Botón para seleccionar una nueva imagen (todavía no implementado)
+                // Botón para hacer una foto con la cámara y actualizar la imagen del producto
                 Positioned(
                   top: 60,
                   right: 20,
@@ -107,12 +110,13 @@ class _ProductScreenBody extends StatelessWidget {
       // Botón flotante para guardar el producto
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
-          child: productService.isSaving
-          ? CircularProgressIndicator(color: Colors.white)
-          : Icon(Icons.save_outlined), // Icono de guardar
+          child: productService.isSaving //IF
+          ? CircularProgressIndicator(color: Colors.white) // true
+          : Icon(Icons.save_outlined), // Icono de guardar // false
+
           onPressed: productService.isSaving //if
           ? null // Si se está guardando, deshabilita el botón
-          : (() async {
+          : (() async { // false
             //Emmagatzemar producte
             if (!productForm.isValidForm()) { // validamos si el formulario es valido
               return;
@@ -120,6 +124,8 @@ class _ProductScreenBody extends StatelessWidget {
               
               // llama a uploadImage
               final String? imageUrl = await productService.uploadImage();
+
+              // Si se ha subido una imagen nueva, actualizamos la URL en el producto temporal
               if (imageUrl != null) {
                 productForm.tempProduct.picture = imageUrl;
               }
@@ -151,7 +157,9 @@ class _ProductForm extends StatelessWidget {
         decoration: _buildBoxDecoration(), // Estilo del contenedor
 
         child: Form(
-          key: productForm.formKey, // Asocia la key de _ProductForm a la de provider/product_from_provider?
+          // Asociamos este formulario al formKey que está en el provider (para validar más adelante)
+          key: productForm.formKey, 
+
           // @autovalidateMode: Para que se pongan los mensajes de error o se quiten de forma automática
           autovalidateMode: AutovalidateMode.onUserInteraction, 
           child: Column(

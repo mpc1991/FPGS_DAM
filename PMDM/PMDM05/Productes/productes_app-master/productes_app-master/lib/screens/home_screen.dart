@@ -36,6 +36,8 @@ class HomeScreen extends StatelessWidget {
 
           // Al hacer tap en un producto, navegamos a la pantalla de detalles
           onTap: () {
+            productService.newPicture = null; // Limpiamos la imagen temporal antes de navegar
+
             // Guardamos el producto seleccionado para modificarlo o visualizarlo
             // Rellenamos el atributo selectedProduct de la classe services/product_services
             // Nos movemos a la pantalla product sin pasarle el producto ya que este está almacenado en services/product_services
@@ -50,15 +52,13 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add), // Icono de añadir producto
         onPressed: () {
+          productService.newPicture = null; // Limpiamos la imagen temporal antes de navegar
+          
           // Creamos nueva instancia de un producto vacía
           // Rellenamos el atributo selectedProduct de la classe services/product_services
           // Nos movemos a la pantalla product sin pasarle el producto ya que este está almacenado en services/product_services
-
           // Creamos y asignamos nuevo producto formato Dart
           productService.selectedProduct = new Product(available: true, name: "", price: 0); 
-
-          productService.newPicture = null;
-
           // Creamos nuevo producto formato Java
           Product product = new Product(available: true, name: "", price: 0); 
           productService.setProduct(product); // setter en Java
