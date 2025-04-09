@@ -48,12 +48,12 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return HomeScreen();
           } else {
-            return AuthScreen();
+            return LoginScreen();
           }
         }),
       routes: {
-        //'login': (_) => LoginScreen(),
-        'login': (_) => AuthScreen(),
+        'login': (_) => LoginScreen(),
+        //'login': (_) => AuthScreen(),
         'home': (_) => HomeScreen(),
         'product': (_) => ProductScreen(),
       },

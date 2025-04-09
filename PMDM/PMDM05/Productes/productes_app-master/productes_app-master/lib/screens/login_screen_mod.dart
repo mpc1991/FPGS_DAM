@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:productes_app/providers/login_form_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ class _AuthScreenState extends State<AuthScreen> {
   // Check si está logueado o registrado
   bool _isLogin = false;
   bool _loading = false;
+  String? _authError;
 
   // Check para validar la entrada del usuario
   final _formKey = GlobalKey<FormState>();
@@ -26,7 +28,8 @@ class _AuthScreenState extends State<AuthScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() {
-    _loading = true; // Indicamos que estamos esperando la respuesta de Firebase
+      _loading =
+          true; // Indicamos que estamos esperando la respuesta de Firebase
     });
 
     // Obtener inputs del controlador
@@ -38,13 +41,17 @@ class _AuthScreenState extends State<AuthScreen> {
       if (value) {
         await LoginFormProvider().signInWithEmailAndPassword(email, password);
         // Si el login es exitoso, navega a la pantalla de inicio
+        // TODO: Aunque el login sea erróneo, la pantalla salta a homeScreen
         // Navigator.pushReplacementNamed(context, 'home');
         // Navigator.pushNamed(context, 'home')
       } else {
         await LoginFormProvider().registerWithEmailAndPassword(email, password);
       }
-
-      setState(() => _loading = false);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _loading = false;
+        _authError = _getFirebaseErrorMessage(e); // 👇 siguiente paso
+      });
     } catch (e) {
       setState(() => _loading = false);
       print(e);
@@ -69,7 +76,7 @@ class _AuthScreenState extends State<AuthScreen> {
             children: [
               // jtextField para el usuario
               TextFormField(
-                // Asignar controlador
+                // Asignar controlador, vincula al att _emailController.
                 controller: _emailController,
                 // Validar el input
                 validator: (value) {
@@ -86,7 +93,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
               // jTextField para la contraseña
               TextFormField(
-                  // Asignar controlador
+                  // Asignar controlador, vincula al att _passwordController
                   controller: _passwordController,
                   obscureText: true,
                   // Función para validar el usuario
@@ -106,12 +113,14 @@ class _AuthScreenState extends State<AuthScreen> {
 
               // Botones para iniciar sesión o registrarse (en horizontal)
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Espaciado parejo entre botones
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceEvenly, // Espaciado parejo entre botones
                 children: [
                   // Botón para iniciar sesión
                   ElevatedButton(
                     // onPressed: handleSubmit(true), ejecuta en tiempo de construcción
-                    onPressed: () => handleSubmit(true), // lamba exp, ejecuta al apretar el botón
+                    onPressed: () => handleSubmit(
+                        true), // lamba exp, ejecuta al apretar el botón
                     child: Text('Login'),
                   ),
 
@@ -122,10 +131,36 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ],
               ),
+
+              // Menajes de error
+              if (_authError != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    _authError!,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
+                ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String _getFirebaseErrorMessage(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        return 'No existe un usuario con ese email.';
+      case 'wrong-password':
+        return 'La contraseña es incorrecta.';
+      case 'email-already-in-use':
+        return 'Este email ya está registrado.';
+      case 'weak-password':
+        return 'La contraseña es demasiado débil.';
+      default:
+        return 'Error: ${e.message}';
+    }
   }
 }

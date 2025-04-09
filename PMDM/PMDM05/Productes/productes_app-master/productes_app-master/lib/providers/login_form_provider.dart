@@ -20,24 +20,24 @@ class LoginFormProvider extends ChangeNotifier {
       }
       notifyListeners();
     } catch (e) {
-      print('asd $e');
+      print('registerWithEmailAndPassword $e');
     }
   }
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
-    try {
-      // Iniciar sesión con el usuario existente a la BBDD
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch(e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user');
-      }
-      notifyListeners();
-    } catch (e) {
-      print(e);
-    }
+    // try {
+    //   // Iniciar sesión con el usuario existente a la BBDD
+       await _auth.signInWithEmailAndPassword(email: email, password: password);
+    // } on FirebaseAuthException catch(e) {
+    //   if (e.code == 'user-not-found') {
+    //     print('No user found for that email.');
+    //   } else if (e.code == 'wrong-password') {
+    //     print('Wrong password provided for that user');
+    //   }
+    //   notifyListeners();
+    // } catch (e) {
+    //   print(e);
+    // }
   }
 
   String email = '';
