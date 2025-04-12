@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:productes_app/providers/login_form_provider.dart';
 import 'package:provider/provider.dart';
 
+// Pantalla principal de autenticación (login/registro).
+// Utiliza StatefulWidget para poder actualizar el estado del widget
+// cuando haya cambios, como mostrar un error o activar el loading.
+
 class AuthScreen extends StatefulWidget {
   //const AuthScreen({super.key});
 
@@ -11,25 +15,29 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  // Check si está logueado o registrado
-  bool _isLogin = false;
-  bool _loading = false;
-  String? _authError;
+  
+  bool _isLogin = false; // saber si el usuario inicia sesión o se registra
+  bool _loading = false; // indica si se está esperando respuesta de Firebase.
+  String? _authError; // almacena el mensaje de error que se muestra al usuario.
 
-  // Check para validar la entrada del usuario
+  // Clave global para identificar y validar el formulario.
+  // Se usa para llamar a métodos como validate().
   final _formKey = GlobalKey<FormState>();
 
-  // Almacenar los inputs del usuario
+  // // Controladores para acceder al texto introducido en los campos de email y contraseña.
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   handleSubmit(bool value) async {
     // Validate user inputs using formkey
+    // Busca todos los widgets FormField (como TextFormField) que estén dentro del Form que tenga esa key.
+    // Si alguno devuelve un mensaje de error (tipo return 'campo vacío'), entonces no es válido y 
+    // muestra ese error en pantalla debajo del campo.
+    // A cada uno le llama a su función validator, si la tiene definida.
     if (!_formKey.currentState!.validate()) return;
 
     setState(() {
-      _loading =
-          true; // Indicamos que estamos esperando la respuesta de Firebase
+      _loading = true; // Indicamos que estamos esperando la respuesta de Firebase
     });
 
     // Obtener inputs del controlador
@@ -60,6 +68,9 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Con esto obtenemos acceso al provider llamado 'LoginFormProvider'.
+    // Nos permite usar su información o funciones dentro de esta pantalla.
+    // Es como pedirle datos a una clase externa que gestiona la lógica del formulario.
     var loginFormProvider = Provider.of<LoginFormProvider>(context);
 
     return Scaffold(
@@ -68,9 +79,15 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
-          // Aññadir key al widget de formulario
-          key: _formKey,
+
+        // Formulario
+        child: Form( // Constructor del Form
+          // Esta 'key' es como una etiqueta o identificador único para el formulario.
+          // Nos permite acceder al formulario desde fuera (por ejemplo, para validar los campos).
+          // Más adelante usamos _formKey.currentState!.validate() para comprobar si todo está bien rellenado.
+          // Sin esta key, no podríamos controlar el formulario de forma segura desde nuestro código.
+          // Interactura en HandleSubmit para validar todos los TextFormField
+          key: _formKey, // Aññadir key al widget de formulario
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -79,7 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 // Asignar controlador, vincula al att _emailController.
                 controller: _emailController,
                 // Validar el input
-                validator: (value) {
+                validator: (value) { // Usa el validador para asegurarse de que no está vacío.
                   // devuelve texto de error si no es correcto, de lo contrario no devuelve nada
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -97,7 +114,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   controller: _passwordController,
                   obscureText: true,
                   // Función para validar el usuario
-                  validator: (value) {
+                  validator: (value) { // Condición usada para validar desde el handlesubmit
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';
                     }
@@ -116,11 +133,11 @@ class _AuthScreenState extends State<AuthScreen> {
                 mainAxisAlignment: MainAxisAlignment
                     .spaceEvenly, // Espaciado parejo entre botones
                 children: [
+
                   // Botón para iniciar sesión
                   ElevatedButton(
                     // onPressed: handleSubmit(true), ejecuta en tiempo de construcción
-                    onPressed: () => handleSubmit(
-                        true), // lamba exp, ejecuta al apretar el botón
+                    onPressed: () => handleSubmit(true), // lamba exp, ejecuta al apretar el botón
                     child: Text('Login'),
                   ),
 
@@ -133,6 +150,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
 
               // Menajes de error
+              // Si hay un error (por ejemplo, usuario no encontrado), se muestra aquí en rojo.
               if (_authError != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
@@ -149,6 +167,8 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
+  // Devuelve un mensaje personalizado según el tipo de error que Firebase lanza.
+  // Ayuda a que el usuario entienda mejor lo que ha fallado.
   String _getFirebaseErrorMessage(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
