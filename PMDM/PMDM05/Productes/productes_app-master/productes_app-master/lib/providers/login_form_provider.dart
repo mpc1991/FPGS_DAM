@@ -47,7 +47,7 @@ class LoginFormProvider extends ChangeNotifier {
 
   set isLoading(bool value) {
      _isLoading = value;
-     notifyListeners();
+     //notifyListeners();
    }
 
   bool isValidForm() {
