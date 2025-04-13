@@ -11,11 +11,12 @@ import java.util.Base64;
 
 import static com.porcel.keygens.KeyHandler.*;
 
+// Classe encargada de manejar la lógica del cliente
 public class FilServidor implements Runnable {
     private final Socket socket;
     private final PrivateKey privateKey; // Clave privada del servidor utilizada para descifrar mensajes
-    private static PublicKey publicKey; // Clave pública del servidor, que se envía a los clientes para que puedan cifrar los datos
-    private static SecretKey secretKey; // Clave secreta simétrica (AES) utilizada para cifrar y descifrar los mensajes con el cliente
+    private PublicKey publicKey; // Clave pública del servidor, que se envía a los clientes para que puedan cifrar los datos
+    private SecretKey secretKey; // Clave secreta simétrica (AES) utilizada para cifrar y descifrar los mensajes con el cliente
 
     public FilServidor(Socket socket, PrivateKey privateKey, PublicKey publicKey) {
         this.socket = socket;
@@ -23,8 +24,8 @@ public class FilServidor implements Runnable {
         this.publicKey = publicKey;
     }
 
-    public static void setPublicKey(PublicKey key) {
-        publicKey = key;
+    public void setPublicKey(PublicKey key) {
+        this.publicKey = key;
     }
 
     @Override

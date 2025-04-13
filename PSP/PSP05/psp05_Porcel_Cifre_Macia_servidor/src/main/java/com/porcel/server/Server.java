@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.security.KeyPair;
 import java.security.PublicKey;
 
+// clase encargada de recibir conexiones
 public class Server {
     private static int port = 5000;
     private static KeyPair keyPair;
