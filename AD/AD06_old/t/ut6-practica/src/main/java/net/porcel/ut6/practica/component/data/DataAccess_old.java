@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.porcel.ut6.practica.component.aux.MPCEx;
+import net.porcel.ut6.practica.component.MPCEx;
 import net.porcel.ut6.practica.component.dto.Actor;
 import net.porcel.ut6.practica.component.dto.Categoria;
 import net.porcel.ut6.practica.component.dto.Film;
