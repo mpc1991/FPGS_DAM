@@ -93,6 +93,9 @@ Generar el jSON
 ## dependencies .yaml (cntrl+shift+p --> pubsecAssist: add/update --> http)
 	- http → para comunicación con Firebase
 	- image_picker → para acceder a la cámara o galería
+	- firebase_auth
+	- firebase_core
+
 ## ChangeNotifier
 	- puedes usar el método notifyListeners() para notificar a los widgets 			suscritos que el estado ha cambiado
 	- ¿Cómo escuchan los widgets? - Usando Provider.of<T>(context)
