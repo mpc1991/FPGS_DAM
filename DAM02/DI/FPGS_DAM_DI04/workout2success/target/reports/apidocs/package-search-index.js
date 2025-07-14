@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"porcel.workout2success"},{"l":"porcel.workout2success.data"},{"l":"porcel.workout2success.dto"},{"l":"porcel.workout2success.listeners"},{"l":"porcel.workout2success.views"}];updateSearchResults();
