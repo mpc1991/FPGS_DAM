@@ -1,0 +1,3 @@
+# List of generated media files. The columns are tab-separated:
+# id | media file type | display name | media file path
+39	windows	Windows	C:\Users\seek_\Documents\repos_mpc\FPGS_DAM_DI07\W2S_windows-x64_1_0.exe

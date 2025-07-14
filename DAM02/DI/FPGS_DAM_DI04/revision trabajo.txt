@@ -1,0 +1,20 @@
+Minuto 8:12: El fondo de los textfields
+
+Minuto 8:35: El jDialog redundante
+
+9:15: El logout debería estar más en medio
+
+Minuto 13:10
+El método de verifyConnection fue creado aposta para seguir las indicaciones del ejercicio donde debíamos sacar un JDialog donde escribir las credenciales.
+JPajelLogin recoge las credenciales que mete el usuario y se las pasa a JDialogConnectionStatus que es quien va a verificar si la conexión es correcta o no.
+
+48:35 -> botones a la izquierda no tiene sentido mostrar/ocultar
+
+
+---------------------------------------------
+Revisar los refresh de las listas y tablas.
+Minto 42:40 -> cuando se crea un usuario parece que no se asigna correctamente al instructor que toca y se asigna todo a Otero
+44:20 -> DAO va en data, Exercici.java va en dto
+jpanelhome que aparezca directamente jpanel
+Commits por cada funcionalidad
+Readme h1,h2
