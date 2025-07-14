@@ -1,0 +1,8 @@
+net\porcel\porcel_cifre_macia_ad05_practica\dto\Cicle.class
+net\porcel\porcel_cifre_macia_ad05_practica\auxiliars\PersException.class
+net\porcel\porcel_cifre_macia_ad05_practica\data\DataAccess.class
+net\porcel\porcel_cifre_macia_ad05_practica\dto\Contacte.class
+net\porcel\porcel_cifre_macia_ad05_practica\dto\Matricula.class
+net\porcel\porcel_cifre_macia_ad05_practica\dto\Alumne.class
+net\porcel\porcel_cifre_macia_ad05_practica\dto\Assignatura.class
+net\porcel\porcel_cifre_macia_ad05_practica\Main.class

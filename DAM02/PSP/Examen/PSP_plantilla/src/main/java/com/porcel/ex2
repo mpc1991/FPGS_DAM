@@ -1,0 +1,17 @@
+Explica y pon ejemplos utilizando Java y pseudocódigo sobre los procesos:
+ 1 punto
+ a. ¿Cómo se crea un proceso en Java?
+ ProcessBuilder pb = new ProcessBuilder("notepad.exe");
+
+ b. ¿Cómo se llama un proceso enJava?
+ Process p = pb.start();
+
+ c. ¿Cómo pasar información entre procesos en Java?
+try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(p.getOutputStream())){
+    out.write("Lo que queramos pasar");
+    out.flush();
+}
+try (BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream())){
+    String line = in.readLine();
+}
+

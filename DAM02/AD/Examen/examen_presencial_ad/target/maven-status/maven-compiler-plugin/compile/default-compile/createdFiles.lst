@@ -1,0 +1,10 @@
+net\porcel\examen_presencial_ad_plantilla\Auxiliars\U5_tractarValors_ORDB.class
+net\porcel\examen_presencial_ad\dto\Notificacio.class
+net\porcel\examen_presencial_ad\dto\Actor.class
+net\porcel\examen_presencial_ad\dto\FilmActorId.class
+Language.class
+net\porcel\examen_presencial_ad\dto\Film.class
+net\porcel\examen_presencial_ad\dto\FilmActor.class
+net\porcel\examen_presencial_ad\Examen_presencial_ad.class
+net\porcel\examen_presencial_ad\DataAccess\Persistance.class
+net\porcel\examen_presencial_ad_plantilla\Auxiliars\PersException.class

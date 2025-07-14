@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Notícies Esportives</title>
+  <link href="http://www.cifp.cat/rss/RSS" />
+  <updated>2022-11-22T00:00:00Z</updated>
+  <id>http://www.cifp.cat/rss/RSS</id>
+
+  <entry>
+    <title>Sergio Busquets confessa quin jove del Barça és més incontrolable per al capità</title>
+    <link href="https://www.ccma.cat/esport3/sergio-busquets-confessa-quin-jove-del-barca-es-mes-incontrolable-al-vestidor/noticia/3197462/" />
+    <updated>2022-11-21T10:46:00Z</updated>
+    <summary>Quinze temporades a l'elit i 139 internacionalitats han fet de Sergio Busquets el far dels talents...</summary>
+    <id>https://www.ccma.cat/esport3/sergio-busquets-confessa-quin-jove-del-barca-es-mes-incontrolable-al-vestidor/noticia/3197462/</id>
+    <author>
+      <name>Macia Porcel</name>
+    </author>
+  </entry>
+
+  <entry>
+    <title>Jordi Alba es defensa: "Em va molestar el tema de les rebaixes salarials"</title>
+    <link href="https://www.ccma.cat/esport3/jordi-alba-es-defensa-em-va-molestar-el-tema-de-les-rebaixes-salarials/noticia/3197443/" />
+    <updated>2022-11-22T09:08:00Z</updated>
+    <summary>Després d'uns mesos de turbulències econòmiques i un inesperat rol secundari al Barça...</summary>
+    <id>https://www.ccma.cat/esport3/jordi-alba-es-defensa-em-va-molestar-el-tema-de-les-rebaixes-salarials/noticia/3197443</id>
+    <author>
+      <name>Macia Porcel</name>
+    </author>
+  </entry>
+
+</feed>

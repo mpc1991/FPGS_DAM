@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<atles>
+  <pais govern="Republica">
+    <nom>França</nom>
+    <capital>París</capital>
+  </pais>
+  <pais govern="Monarquia">
+    <nom>Espanya</nom>
+    <capital>Madrid</capital>
+  </pais>
+  <pais govern="Republica">
+    <nom>Italia</nom>
+    <capital>Roma</capital>
+  </pais>
+  <pais govern="Republica Federal">
+    <nom>Alemanya</nom>
+    <capital>Berlín</capital>
+  </pais>
+  <pais govern="Monarquía">
+    <nom>Regne Unit</nom>
+    <capital>Londres</capital>
+  </pais>
+</atles>

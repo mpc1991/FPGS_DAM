@@ -1,0 +1,6 @@
+net\porcel\ut5\practica\component\controladora\Controladora.class
+net\porcel\ut5\practica\component\dto\Conection.class
+net\porcel\ut5\practica\component\auxiliars\MPCException.class
+net\porcel\ut5\practica\component\auxiliars\TractarValors.class
+net\porcel\ut5\practica\component\dto\Servidor.class
+net\porcel\ut5\practica\component\Ut5PracticaComponent.class

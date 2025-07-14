@@ -1,0 +1,11 @@
+<odoo>
+    
+
+    <!-- Menu Superior-->
+    <menuitem id="menu_evento_root" name="Eventos"/>
+    <!-- Menu que ejecuta la acción -->
+    <menuitem id="menu_evento" name="Gestion de Eventos"
+              parent="menu_evento_root"
+              action="action_evento"
+    />
+</odoo>

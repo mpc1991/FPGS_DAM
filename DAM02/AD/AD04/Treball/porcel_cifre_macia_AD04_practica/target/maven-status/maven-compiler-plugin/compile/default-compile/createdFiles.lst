@@ -1,0 +1,5 @@
+net\porcel\porcel_cifre_macia_ad04_treball\dto\Trip.class
+net\porcel\porcel_cifre_macia_ad04_treball\Main.class
+net\porcel\porcel_cifre_macia_ad04_treball\dto\Peatge.class
+net\porcel\porcel_cifre_macia_ad04_treball\controller\Persistencia.class
+net\porcel\porcel_cifre_macia_ad04_treball\auxiliars\JPAException.class

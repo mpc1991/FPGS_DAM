@@ -1,0 +1,3 @@
+id                    ,name                 ,model_id:id        ,group_id:id         ,perm_read,perm_write,perm_create,perm_unlink
+access_evento_user    ,access.evento.user   ,model_examen_evento,                    ,1        ,1         ,1          ,1
+access_evento_manager ,access.evento.manager,model_examen_evento,group_event_manager ,1        ,1         ,1          ,1

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<cataleg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cataleg.xsd">
+
+   <singles codi="S0001">
+     <titol>Hola Mundo</titol>
+     <descripcio>Canço dedicada als programadors</descripcio>
+     <pais>España</pais>
+     <idioma>Español</idioma>
+     <genere>rock</genere>
+     <grup>
+        <membres sexe="home">
+            <nom>Juanito</nom>
+        </membres>
+      </grup>
+      <durada>5:00</durada>
+    </singles>
+ 
+    <albums codi="A0002" >
+     <titol>Hola Mundo</titol>
+     <descripcio>Canço dedicada als programadors</descripcio>
+     <pais>España</pais>
+     <idioma>Español</idioma>
+     <genere>blues</genere>
+     <grup>
+        <membres sexe="home">
+            <nom>Juanito</nom>
+        </membres>
+      </grup>
+      <llistaCancons numeroDeCanco = "001">
+          <titolCanco>Aserejé</titolCanco>
+          <duradaCanco>1:30</duradaCanco>
+      </llistaCancons>
+      <numeroDeCancons>12331</numeroDeCancons>
+    </albums>
+</cataleg>

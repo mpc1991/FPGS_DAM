@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="cataleg">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="singles"/>
+        <xs:element ref="albums"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="singles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="titol"/>
+        <xs:element ref="descripcio" minOccurs="0"/>
+        <xs:element ref="pais"/> 
+        <xs:element ref="idioma"/>
+        <xs:element ref="genere" minOccurs="0"/>
+        <xs:element ref="grup"/>
+        <xs:element ref="durada"/>
+      </xs:sequence>
+      <xs:attribute name="codi" type="xs:ID" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="albums">
+      <xs:complexType>
+        <xs:sequence >
+        <xs:element ref="titol"/>
+        <xs:element ref="descripcio" minOccurs="0"/>
+        <xs:element ref="pais"/> 
+        <xs:element ref="idioma"/>
+        <xs:element ref="genere" minOccurs="0"/>
+        <xs:element ref="grup"/>
+        <xs:element ref="llistaCancons"/>
+        <xs:element ref="numeroDeCancons"/>
+      </xs:sequence>
+      <xs:attribute name="codi" type="xs:ID" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="grup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="membres"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="membres">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nom" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="sexe" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="home"/>
+            <xs:enumeration value="dona"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="titol" type="xs:string"/>
+  <xs:element name="descripcio" type="xs:string"/>
+  <xs:element name="pais" type="xs:string"/>
+  <xs:element name="idioma" type="xs:string"/>
+  <xs:element name="durada" type="xs:string"/>
+  
+  <xs:element name="genere">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="classica"/>
+        <xs:enumeration value="jazz"/>
+        <xs:enumeration value="blues"/>
+        <xs:enumeration value="gospel"/>
+        <xs:enumeration value="soul"/>
+        <xs:enumeration value="pop"/>
+        <xs:enumeration value="rock"/>
+        <xs:enumeration value="country"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="llistaCancons">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="titolCanco"/>
+        <xs:element ref="duradaCanco"/>
+      </xs:sequence>
+      <xs:attribute name="numeroDeCanco" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="titolCanco" type="xs:string"/>
+  <xs:element name="duradaCanco" type="xs:string"/>
+  <xs:element name="numeroDeCancons" type="xs:string"/>
+  
+</xs:schema>

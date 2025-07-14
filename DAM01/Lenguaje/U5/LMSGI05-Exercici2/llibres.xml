@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+<llibre>
+  <títol idioma="castellà">Cien años de soledad</títol>
+  <autor>
+    <nom>Gabriel</nom>
+    <llinatges>García Márquez</llinatges>
+  </autor>
+  <data_de_publicació any="1967"/>
+</llibre>
+<llibre>
+  <títol idioma="anglès">Ulysses</títol>
+  <autor datanaixement="02/02/1882">
+    <nom>James</nom>
+    <llinatges>Joyce</llinatges>
+  </autor>
+<data_de_publicació any="1923"/>
+</llibre>
+<llibre>
+  <títol idioma="anglès">The grapes of wrath</títol>
+  <autor>
+    <nom>John</nom>
+    <llinatges>Steinbeck</llinatges>
+  </autor>
+  <data_de_publicació any="1939"/>
+</llibre>
+<llibre>
+  <títol idioma="castellà">Don Quijote de la Mancha</títol>
+  <autor>
+    <nom>Miguel</nom>
+    <llinatges>de Cervantes Saavedra</llinatges>
+  </autor>
+  <data_de_publicació any="1605"/>
+</llibre>
+<llibre>
+<títol idioma="català">Tirant lo blanc</títol>
+<autor>
+    <nom>Joanot</nom>
+    <llinatges>Martorell</llinatges>
+</autor>
+<data_de_publicació any="1490"/>
+</llibre>
+</biblioteca>

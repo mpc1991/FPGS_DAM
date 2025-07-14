@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogo SYSTEM "Documento2.dtd">
+  <catalogo>
+    <single code="c1">
+      <titulo>titulo</titulo>
+      <descripcion> Descripción </descripcion>
+      <pais>pais</pais>
+      <idiomas>idiomas</idiomas>
+      <genero><jazz/></genero>
+      <grupo>grupo</grupo>
+      <miembroList>
+        <miembro genero="">
+          <nombre>nombre</nombre>
+        </miembro>
+      </miembroList>
+      <duracion>1:30 </duracion>
+    </single>
+    <album code="1">
+      <titulo>titulo</titulo>
+      <descripcion>Descripción </descripcion>
+      <pais>pais</pais>
+      <idiomas>idiomas</idiomas>
+      <genero>genero</genero>
+      <grupo>grupo</grupo>
+      <miembroList>
+        <miembro genero="mujer">
+          <nombre>nombre</nombre>
+        </miembro>
+      </miembroList>
+      <cancionList>
+        <cancion numero="1">
+          <titulo>titulo</titulo>
+          <duracion>2:15</duracion>
+        </cancion>
+        <cancion numero="2">
+          <titulo>Titulo de la segunda cancion</titulo>
+          <duracion>3:30</duracion>
+        </cancion>
+      </cancionList>
+    </album>
+</catalogo>

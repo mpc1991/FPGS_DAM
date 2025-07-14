@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateDescriptor baseUrl="">
+  <entry targetMediaFileId="39" updatableVersionMin="" updatableVersionMax="" fileName="W2S_windows-x64_1_0.exe" newVersion="1.0" newMediaFileId="39" fileSize="74645504" md5Sum="51fe3636c4e8eb206b28aecd3cc5336e" sha256Sum="24d93bea16217f278406af3a2a8a3d798470c2b3f17244de8b935c892ca4ec08" bundledJre="windows-amd64-21.0.1.tar.gz" jreMinVersion="21" jreMaxVersion="21" archive="false" singleBundle="false">
+    <comment language="en" />
+  </entry>
+</updateDescriptor>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+    <title>Notícies Esportives</title>
+    <link>http://www.cifp.cat/rss/RSS</link>
+    <description>Últimes notícies d'esports</description>
+    <pubDate>Tue, 22 Nov 2022 00:00:00 GMT</pubDate>
+
+    <item>
+        <title>Sergio Busquets confessa quin jove del Barça és més incontrolable per al capità</title>
+        <link>https://www.ccma.cat/esport3/sergio-busquets-confessa-quin-jove-del-barca-es-mes-incontrolable-al-vestidor/noticia/3197462/</link>
+        <pubDate>Mon, 21 Nov 2022 10:46:00 GMT</pubDate>
+        <description>Quinze temporades a l'elit i 139 internacionalitats han fet de Sergio Busquets el far dels talents...</description>
+        <guid isPermaLink="false">unique-id-1</guid>
+    </item>
+
+    <item>
+        <title>Jordi Alba es defensa: "Em va molestar el tema de les rebaixes salarials"</title>
+        <link>https://www.ccma.cat/esport3/jordi-alba-es-defensa-em-va-molestar-el-tema-de-les-rebaixes-salarials/noticia/3197443/</link>
+        <pubDate>Tue, 22 Nov 2022 09:08:00 GMT</pubDate>
+        <description>Després d'uns mesos de turbulències econòmiques i un inesperat rol secundari al Barça...</description>
+        <guid isPermaLink="false">unique-id-2</guid>
+    </item>
+
+</channel>
+</rss>

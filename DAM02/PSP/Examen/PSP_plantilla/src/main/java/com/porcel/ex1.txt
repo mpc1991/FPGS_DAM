@@ -1,0 +1,100 @@
+ Explica y pon ejemplos de:
+
+ a. Las etapas o estados por los que pasa un proceso durante su ciclo de
+ vida. Se recomienda un esquema, aparte de una breve explicación de
+ cada unodeellos.
+
+ New -> ready -> running -> Detached
+         |<-Blocked<-|
+
+ b. Las diferencias entre procesos e hilos, pon ejemplos de declaración de
+ cada uno de ellos utilizando el lenguaje java.
+Proceso -> No comparten memoria ni datos,     No afecta a otros procesos
+Hilo ->       Comparten memoria y datos , Puede afectar a otros hilos.
+
+// Procesos
+ ProcessBuilder pb = new ProcessBuilder(
+ "java",                                  // comando
+ "-cp",                                   // Indicamos que viene classpath
+ "../psp/out/artifacts/psp__jar/psp.jar", // classpath
+ "org.example.carregarPaginaWeb"          // main
+ );
+ Process p = pb.start();
+
+// Hilos
+Thread srv = new Thread();
+srv.start();
+
+Server srv = new Server()
+srv.start();
+
+public Server extends Thread{
+// constr
+
+@override
+public run(){
+}
+}
+
+
+ c. Los mecanismos de sincronización existentes, describe cada uno de ellos
+ (ventajas, diferencias, etc). Pon ejemplos y describe cómo se instancian
+ dentro de Java.
+
+ Semaphore s = new Semaphore[10];
+ volatile boolean interruptor;
+
+ s.aquire();
+ extras.contarNumeros();
+ s.release();
+
+ public Carrera(){
+    Strin nombreCavallo;
+    Object lock;
+ }
+@Override
+public void run(){
+Syncronized (lock) {
+        contador ++
+        extras.verificarPodio();
+        if (contador == MAX_CAVALLS) {
+            contador=0;
+            lock.notifyAll();
+        } else {
+            lock.wait();
+        }
+    }
+
+ d. Las capasdel modelo OSI
+ 7 Aplicación       -> Interactua con el usuario (SMTP, HTTP, DNS, SSH)
+ 6 Presentación     -> Traduce datos (encriptado, codificación)
+ 5 Sesión           -> Controla las sesiones
+ 4 Transporte       -> Transferencia de datos (TCP, UDP)
+ 3 Red              -> Enrutamiento de datos (IP)
+ 2 Enlace de datos  -> Switches, MACs
+ 1 Fisica           -> Cables, Wifis
+
+ TCP/IP
+ 4 Aplicación
+ 3 Transporte
+ 2 Internet
+ 1 Acceso a la red
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

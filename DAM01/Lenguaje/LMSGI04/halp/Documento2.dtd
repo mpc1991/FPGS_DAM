@@ -1,0 +1,32 @@
+<!ELEMENT catalogo (single*, album*)>
+
+<!ELEMENT single (titulo,descripcion?,pais,idioma,genero?,grupo,miembros,duracion)>
+<!ATTLIST single code ID #REQUIRED>
+
+<!ELEMENT album (titulo,descripcion?,pais,idioma,genero?,grupo,miembros,numero_canciones,titulo_canciones)>
+<!ATTLIST albums codi ID #REQUIRED>
+
+<!ELEMENT titulo(#PCDATA)>
+<!ELEMENT descripcion (#PCDATA)>
+<!ELEMENTpais(#PCDATA)>
+<!ELEMENT idioma(#PCDATA)>
+
+
+<!ELEMENT genero(musica_clasica | jazz | blues | gospel | soul | pop | rock_and_roll | country )>
+    
+  <!ELEMENT grupo(#PCDATA)>
+  <!ELEMENT miembrosList(miembro+)> 
+  <!ELEMENT miembro(sexo,nombre)>
+  <!ATTLIST miembro_genero 
+     sexo (hombre|mujer)#REQUIRED
+  <! ELEMENT miembro (nombre)>
+  <!ELEMENT duracion (#PCDATA)>
+
+  <!ATTLIST album code ID #REQUIRED>
+  <!ELEMENT cancionList (cancion+)>
+  <!ATTLIST cancion numero CDATA #REQUIRED>
+  <!ELEMENT cancion(titulo,duracion)>
+  <!ELEMENT cancion(titulo)>
+  <!ELEMENT titulo(#PCDATA)>
+  <!ELEMENT duracion(#PCDATA)>
+</ELEMENT>
